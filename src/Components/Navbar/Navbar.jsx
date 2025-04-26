@@ -6,7 +6,6 @@ import UseUser from "../../Hooks/UseUser";
 const Navbar = () => {
   const { user, OUT } = useContext(AuthContext);
   const { userData } = UseUser();
-  console.log(userData);
 
   const [storedImage, setStoredImage] = useState(
     localStorage.getItem("userImage")
@@ -120,8 +119,14 @@ const Navbar = () => {
                     <a className="justify-between">{userData?.Name}</a>
                   </li>
                   <li>
+                    <a href="/dashboard" className="flex flex-wrap">
+                      Dashboard
+                    </a>
+                  </li>
+                  <li>
                     <a className="flex flex-wrap">{userData?.email}</a>
                   </li>
+
                   <li>
                     <button onClick={handleLogout}>Log out</button>
                   </li>

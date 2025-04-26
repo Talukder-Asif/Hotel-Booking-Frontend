@@ -10,6 +10,7 @@ import PrivateProvide from "../Components/Provider/PrivateProvide";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import Gallery from "../Pages/Gallery/Gallery";
 import HowToBook from "../Components/HowToBook/HowToBook";
+import Dashboard from "../Components/Dashboard/Dashboard";
 
 const routes = createBrowserRouter([
   {
@@ -45,6 +46,16 @@ const routes = createBrowserRouter([
       {
         path: "/howToBook",
         element: <HowToBook></HowToBook>,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+          {
+            path: "/dashboard",
+            element: <h1>Hello</h1>,
+          },
+        ],
       },
     ],
   },
