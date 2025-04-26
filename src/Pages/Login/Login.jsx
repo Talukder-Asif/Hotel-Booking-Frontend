@@ -24,8 +24,8 @@ const Login = () => {
         console.log(res.user);
 
         Swal.fire({
-          title: "Good job!",
-          text: "You clicked the button!",
+          title: "Welcome Back",
+          text: "Log in successfully...",
           icon: "success",
         });
         {
@@ -65,17 +65,11 @@ const Login = () => {
             console.error("Error creating user:", error);
           });
         Swal.fire({
-          title: "Your account have been created.",
+          title: "Log in successfully...",
           width: 600,
           padding: "3em",
           color: "#716add",
           background: "#fff url(/images/trees.png)",
-          backdrop: `
-            rgba(0,0,123,0.4)
-            url("/images/nyan-cat.gif")
-            left top
-            no-repeat
-          `,
         });
 
         {

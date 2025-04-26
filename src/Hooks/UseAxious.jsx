@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/Provider/AuthProvider";
 
 const AxiousSecure = axios.create({
@@ -9,11 +8,9 @@ const AxiousSecure = axios.create({
   withCredentials: true,
 });
 const UseAxious = () => {
-  const { loading, user, In, update, Google, OUT, creatUser } =
-    useContext(AuthContext);
-  const navigate = useNavigate();
+  const { OUT } = useContext(AuthContext);
   useEffect(() => {
-    AxiousSecure.interceptors.response.use(
+    AxiousSecure?.interceptors?.response.use(
       (res) => {
         return res;
       },
@@ -27,7 +24,7 @@ const UseAxious = () => {
         }
       }
     );
-  }, []);
+  }, [OUT]);
 
   return AxiousSecure;
 };

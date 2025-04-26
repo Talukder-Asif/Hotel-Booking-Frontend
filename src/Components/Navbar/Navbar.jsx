@@ -2,8 +2,12 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import logo from "/Logo.png";
+import UseUser from "../../Hooks/UseUser";
 const Navbar = () => {
   const { user, OUT } = useContext(AuthContext);
+  const { userData } = UseUser();
+  console.log(userData);
+
   const [storedImage, setStoredImage] = useState(
     localStorage.getItem("userImage")
   );
@@ -105,21 +109,18 @@ const Navbar = () => {
               <>
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={storedImage ? storedImage : user?.photoURL} />
+                    <img src={userData?.img} />
                   </div>
                 </label>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 overflow-hidden z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a className="justify-between">
-                      {user.displayName}
-                      <span className="badge">New</span>
-                    </a>
+                    <a className="justify-between">{userData?.Name}</a>
                   </li>
                   <li>
-                    <a className="flex flex-wrap">{user.email}</a>
+                    <a className="flex flex-wrap">{userData?.email}</a>
                   </li>
                   <li>
                     <button onClick={handleLogout}>Log out</button>
