@@ -31,7 +31,7 @@ const RoomDetails = () => {
   useEffect(() => {
     // Update the document title for this page
     document.title = `Smart Hotel || Room ${roomId}`;
-  }, []);
+  }, [roomId]);
 
   const getSeats = async () => {
     const res = await axios.get(uri);
