@@ -27,7 +27,7 @@ const Testomonial = () => {
       <div className="flex flex-col justify-center items-center ">
         <h2 className=" md:text-5xl text-3xl pt-20 font-semibold text-center">
           Testimonials By
-          <span className="text-[#1E88E5] "> Customer</span>
+          <span className="text-[#002A3F] "> Customer</span>
         </h2>
         <Carousel
           data-aos-duration="1000"

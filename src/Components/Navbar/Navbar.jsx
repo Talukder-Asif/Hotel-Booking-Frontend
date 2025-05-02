@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
       <NavLink
         className={
-          "px-3 py-2 hover:bg-[#1E88E5] hover:text-white rounded-md mr-2 "
+          "px-3 py-2 hover:bg-[#002A3F] hover:text-white rounded-md mr-2 "
         }
         to={"/"}
       >
@@ -19,7 +19,7 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={
-          "px-3 py-2 hover:bg-[#1E88E5] hover:text-white  rounded-md mr-2 "
+          "px-3 py-2 hover:bg-[#002A3F] hover:text-white  rounded-md mr-2 "
         }
         to={"/rooms"}
       >
@@ -27,7 +27,7 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={
-          "px-3 py-2 hover:bg-[#1E88E5] hover:text-white  rounded-md mr-2 "
+          "px-3 py-2 hover:bg-[#002A3F] hover:text-white  rounded-md mr-2 "
         }
         to={"/gallery"}
       >
@@ -35,7 +35,7 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={
-          "px-3 py-2 hover:bg-[#1E88E5] hover:text-white  rounded-md mr-2 "
+          "px-3 py-2 hover:bg-[#002A3F] hover:text-white  rounded-md mr-2 "
         }
         to={"/howToBook"}
       >
@@ -45,7 +45,7 @@ const Navbar = () => {
       {user ? (
         <NavLink
           className={
-            "px-3 py-2 hover:bg-[#1E88E5] hover:text-white rounded-md mr-2 "
+            "px-3 py-2 hover:bg-[#002A3F] hover:text-white rounded-md mr-2 "
           }
           to={"/myBookings"}
         >
@@ -54,7 +54,7 @@ const Navbar = () => {
       ) : (
         <NavLink
           className={
-            "px-3 py-2 hover:bg-[#1E88E5] hover:text-white rounded-md mr-2 "
+            "px-3 py-2 hover:bg-[#002A3F] hover:text-white rounded-md mr-2 "
           }
           to={"/login"}
         >

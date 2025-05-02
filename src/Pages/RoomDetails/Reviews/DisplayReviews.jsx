@@ -21,6 +21,7 @@ const DisplayReviews = ({ roomID }) => {
     queryKey: [`reviewsData${roomID}`],
     queryFn: getReviews,
   });
+
   if (isLoading) {
     return <Loading></Loading>;
   }

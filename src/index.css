@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 #floating {
   position: absolute;
-  background: #FFD700;
- 
+  background: #ffd700;
+
   padding: 0.5rem;
   color: white;
   box-sizing: border-box;
@@ -20,9 +20,9 @@ body{
 .image-container {
   clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }
- a.active {
- background-color: #1E88E5;
- color: white;
+a.active {
+  background-color: #002a3f;
+  color: white;
 }
 /* Add this CSS to your styles */
 .overlay {

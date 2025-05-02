@@ -8,9 +8,11 @@ const NewsLetter = () => {
       <div className="backdrop-brightness-[0.3] justify-center flex flex-col min-h-[60vh] w-full h-full">
         <h2 className=" lg:text-5xl text-4xl font-semibold text-white text-center pt-10">
           {" "}
-          Subscribe to <span className="text-[#1E88E5]">Our</span> NewsLetter
+          Subscribe to <span className="text-[#002A3F]">Our</span> NewsLetter
         </h2>
-        <p className="text-white text-center mt-5">Get the latest  offers fast</p>
+        <p className="text-white text-center mt-5">
+          Get the latest offers fast
+        </p>
         <div className="relative flex w-full max-w-[24rem] mx-auto mt-10">
           <Input
             type="email"
@@ -29,7 +31,9 @@ const NewsLetter = () => {
             size="sm"
             color={email ? "white" : "white"}
             disabled={!email}
-            className={`!absolute text-white ${email ? 'bg-[#1E88E5]' : 'bg-[#286aa3]'} right-1 top-1 rounded`}
+            className={`!absolute text-white ${
+              email ? "bg-[#002A3F]" : "bg-[#286aa3]"
+            } right-1 top-1 rounded`}
           >
             Subscribe
           </Button>

@@ -7,24 +7,24 @@ const UseRoom = () => {
   const { user } = useContext(AuthContext);
   const AxiousSecure = UseAxiousSecure();
 
-  const fetchBookings = async () => {
-    const response = await AxiousSecure.get(`/myBookings?email=${user.email}`);
+  const fetchRoom = async () => {
+    const response = await AxiousSecure.get(`/rooms`);
     return response.data;
   };
 
   const {
-    data: bookings = [],
+    data: rooms = [],
     isLoading,
     isError,
     error,
     refetch,
   } = useQuery({
-    queryKey: ["bookings", user?.email],
-    queryFn: fetchBookings,
+    queryKey: ["rooms", user?.email],
+    queryFn: fetchRoom,
     enabled: !!user?.email,
   });
 
-  return { bookings, isLoading, isError, error, refetch };
+  return { rooms, isLoading, isError, error, refetch };
 };
 
 export default UseRoom;

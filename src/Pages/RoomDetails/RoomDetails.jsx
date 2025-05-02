@@ -83,22 +83,22 @@ const RoomDetails = () => {
 
         <div className="flex flex-col lg:justify-start justify-center">
           <h2 className="lg:text-4xl font-semibold text-3xl lg:text-start text-center max-w-md">
-            We are <span className="text-[#1E88E5]">here</span> to Offer
+            We are <span className="text-[#002A3F]">here</span> to Offer
           </h2>
           <p className="lg:text-xl mt-4 font-medium md:text-lg lg:text-start text-center">
             {description}
           </p>
           <p className="mt-3 lg:text-start text-center font-medium">
-            Price <span className="text-[#1E88E5]">Per</span> Night : $
+            Price <span className="text-[#002A3F]">Per</span> Night : $
             {priceRange} - ${priceRange + 300}
           </p>
           <p className="mt-3 lg:text-start text-center font-medium">
-            Room <span className="text-[#1E88E5]">Size</span> : {roomSize}
+            Room <span className="text-[#002A3F]">Size</span> : {roomSize}
           </p>
           <p className="mt-4 lg:text-start text-center font-medium">
             {seatAvailable.length ? (
               <p>
-                <span className="px-[10px] py-[1px] rounded-full mr-3 bg-[#1E88E5] "></span>{" "}
+                <span className="px-[10px] py-[1px] rounded-full mr-3 bg-[#002A3F] "></span>{" "}
                 Available
               </p>
             ) : (

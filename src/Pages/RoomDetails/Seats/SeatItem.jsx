@@ -96,7 +96,7 @@ const SeatItem = ({ data, style, num, loadedData }) => {
         <td className="px-4 py-2 text-center">
           {bookingButton ? (
             <p>
-              <span className="px-[10px] py-[1px] rounded-full mr-3 bg-[#1E88E5] "></span>{" "}
+              <span className="px-[10px] py-[1px] rounded-full mr-3 bg-[#002A3F] "></span>{" "}
               Available
             </p>
           ) : (
@@ -163,17 +163,17 @@ const SeatItem = ({ data, style, num, loadedData }) => {
           <div className="w-[40%]">
             <h1 className="mt-3 text-black font-bold text-center md:text-xl  text-lg">
               Room Number :{" "}
-              <span className="text-[#1E88E5]">{data.seatId}</span>
+              <span className="text-[#002A3F]">{data.seatId}</span>
             </h1>
             <p className="mt-3 lg:text-start text-center font-medium">
-              Price <span className="text-[#1E88E5]">Per</span> Night :{" "}
+              Price <span className="text-[#002A3F]">Per</span> Night :{" "}
               <span>${data.price}</span>
             </p>
             <p className="mt-3 lg:text-start text-center font-medium flex flex-col justify-center items-center">
               {" "}
               <span>
                 {" "}
-                Your <span className="text-[#1E88E5]">Booking</span> Date
+                Your <span className="text-[#002A3F]">Booking</span> Date
               </span>{" "}
               <hr /> <span> {dateValue} </span>{" "}
             </p>

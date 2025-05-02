@@ -89,16 +89,12 @@ const AddRoom = () => {
         img: img,
         roomImages: [roomImages1, roomImages2],
         unAvailable: [],
-        review: [],
-        booked: [],
       };
 
       // Show Uploading Data
       Swal.update({ title: "Uploading Room Data..." });
 
       const res = await axiosSecure.post(`/room`, formData);
-
-      console.log(res?.data);
 
       if (res?.data?.modifiedCount || res?.data?.insertedId) {
         form.reset();
@@ -120,7 +116,7 @@ const AddRoom = () => {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl mx-auto bg-white shadow-lg p-6 rounded-2xl space-y-4"
+        className="max-w-2xl mx-auto  p-6 rounded-2xl space-y-4"
       >
         <h2 className="text-2xl font-bold text-center">Add New Room</h2>
 

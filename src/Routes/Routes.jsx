@@ -15,6 +15,7 @@ import Profile from "../Pages/Profile/Profile";
 import ManageStaff from "../Pages/Admin/ManageStaff/ManageStaff";
 import ManageGuest from "../Pages/Admin/ManageGuest/ManageGuest";
 import AddRoom from "../Pages/Admin/AddRoom/AddRoom";
+import RoomsForAdmin from "../Pages/Admin/Rooms/RoomsForAdmin";
 
 const routes = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/add-rooms",
             element: <AddRoom></AddRoom>,
+          },
+          {
+            path: "/dashboard/rooms",
+            element: <RoomsForAdmin></RoomsForAdmin>,
           },
         ],
       },
