@@ -1,12 +1,12 @@
 import Swal from "sweetalert2";
-import useAllOfficials from "../../../Hooks/useAllOfficials";
-import axios from "axios";
-import Loading from "../../../Components/Loading/Loading";
 import UseUser from "../../../Hooks/UseUser";
+import Loading from "../../../Components/Loading/Loading";
+import useAllUsers from "../../../Hooks/useAllUsers";
 import man from "/src/assets/Man1.png";
+import axios from "axios";
 
-const ManageStaff = () => {
-  const [Officials, isOfficialsLoading, refetch] = useAllOfficials();
+const ManageGuest = () => {
+  const [Users, isUsersLoading, refetch] = useAllUsers();
   const handleRoleUpdate = (newRole, user) => {
     const updateData = {
       Name: user?.Name,
@@ -56,7 +56,7 @@ const ManageStaff = () => {
       }
     });
   };
-  if (isOfficialsLoading) {
+  if (isUsersLoading) {
     return <Loading></Loading>;
   }
   return (
@@ -74,7 +74,7 @@ const ManageStaff = () => {
           </tr>
         </thead>
         <tbody>
-          {Officials?.map((usersData, i) => (
+          {Users?.map((usersData, i) => (
             <tr
               key={i}
               className={
@@ -138,11 +138,6 @@ const ManageStaff = () => {
                     >
                       Customer
                     </option>
-                    <option
-                      className={usersData?.role === "Admin" ? "hidden" : null}
-                    >
-                      Admin
-                    </option>
 
                     <option
                       className={usersData?.role === "Staff" ? "hidden" : null}
@@ -154,8 +149,7 @@ const ManageStaff = () => {
               </th>
 
               <th>
-                {userData?.role === "Admin" &&
-                usersData?.role !== "SuperAdmin" ? (
+                {userData?.role === "Admin" ? (
                   <button
                     onClick={() => handleDelete(usersData)}
                     className="p-3 border-2 border-neutral-600 text-white bg-red-600"
@@ -172,4 +166,4 @@ const ManageStaff = () => {
   );
 };
 
-export default ManageStaff;
+export default ManageGuest;

@@ -13,6 +13,7 @@ import HowToBook from "../Components/HowToBook/HowToBook";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Profile from "../Pages/Profile/Profile";
 import ManageStaff from "../Pages/Admin/ManageStaff/ManageStaff";
+import ManageGuest from "../Pages/Admin/ManageGuest/ManageGuest";
 
 const routes = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/officials",
             element: <ManageStaff></ManageStaff>,
+          },
+          {
+            path: "/dashboard/guests",
+            element: <ManageGuest></ManageGuest>,
           },
         ],
       },
