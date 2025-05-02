@@ -14,6 +14,7 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 import Profile from "../Pages/Profile/Profile";
 import ManageStaff from "../Pages/Admin/ManageStaff/ManageStaff";
 import ManageGuest from "../Pages/Admin/ManageGuest/ManageGuest";
+import AddRoom from "../Pages/Admin/AddRoom/AddRoom";
 
 const routes = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/guests",
             element: <ManageGuest></ManageGuest>,
+          },
+          {
+            path: "/dashboard/add-rooms",
+            element: <AddRoom></AddRoom>,
           },
         ],
       },

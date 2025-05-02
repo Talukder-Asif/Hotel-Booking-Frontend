@@ -25,6 +25,7 @@ const RoomDetails = () => {
     // availability,
     priceRange,
   } = useLoaderData();
+
   // const [seat, setSeats] = useState([]);
   const uri = `https://hotel-managment-server.vercel.app/api/v1/seats/${roomId}`;
 
@@ -55,8 +56,9 @@ const RoomDetails = () => {
   }
 
   const seatAvailable = seatsinHere.data.filter(
-    (item) => item.available == true
+    (item) => item?.available == true
   );
+
   return (
     <>
       <div className="my-10 lg:flex-row flex items-center gap-10 flex-col justify-center">

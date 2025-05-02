@@ -7,7 +7,6 @@ import Loading from "../../../Components/Loading/Loading";
 
 const DisplayReviews = ({ roomID }) => {
   const uri = `https://hotel-managment-server.vercel.app/api/v1/getReviews/${roomID}`;
-  console.log(uri);
 
   const getReviews = () => {
     const res = axios.get(uri);

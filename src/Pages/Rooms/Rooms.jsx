@@ -39,6 +39,8 @@ const Rooms = () => {
     queryFn: getRoom,
   });
 
+  console.log(RoomData);
+
   if (isLoading) {
     return <Loading></Loading>;
   }

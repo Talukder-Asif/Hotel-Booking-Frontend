@@ -8,7 +8,6 @@ import Loading from "../../Components/Loading/Loading";
 
 const RoomsPic = ({ data }) => {
   const { _id, roomId, img, roomImages, priceRange } = data;
-  console.log(data);
 
   const uri = `https://hotel-managment-server.vercel.app/api/v1/perReviews/${roomId}`;
 
@@ -35,14 +34,14 @@ const RoomsPic = ({ data }) => {
   let averageRating = 0;
 
   for (let value of Reviews.data) {
-    console.log(value);
+    // console.log(value);
     averageRating = averageRating + value.rating;
-    console.log(averageRating);
+    // console.log(averageRating);
   }
   averageRating = Math.floor(averageRating / Reviews?.data?.length);
-  console.log("Review Data ", Reviews?.data);
-  console.log("Review rating average ", averageRating);
-  console.log("legnth", Reviews?.data.length);
+  // console.log("Review Data ", Reviews?.data);
+  // console.log("Review rating average ", averageRating);
+  // console.log("legnth", Reviews?.data.length);
 
   return (
     <>
