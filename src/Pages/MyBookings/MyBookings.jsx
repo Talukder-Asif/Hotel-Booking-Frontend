@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import UseAxious from "./../../Hooks/UseAxious";
+import { useContext, useEffect } from "react";
+import UseAxiousSecure from "./../../Hooks/UseAxiousSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import BookItem from "./BookItem";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import Dot from "../../Components/Dot/Dot";
-import Swal from "sweetalert2";
+import Loading from "../../Components/Loading/Loading";
 
 const MyBookings = () => {
   useEffect(() => {
@@ -20,38 +19,20 @@ const MyBookings = () => {
 
   const { user } = useContext(AuthContext);
 
-  const AxiousSecure = UseAxious();
+  const AxiousSecure = UseAxiousSecure();
 
   const uri = `/myBookings?email=${user.email}`;
   const getBooking = async () => {
     const result = await AxiousSecure.get(uri);
     return result;
   };
-  const {
-    data: Booking,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
+  const { data: Booking, isLoading } = useQuery({
     queryKey: ["booking", user],
     queryFn: getBooking,
   });
 
   if (isLoading) {
-    return (
-      <>
-        <div className="  container w-[100px] mx-auto min-h-[70vh] flex justify-center items-center">
-          <div className="complete">
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__ball" />
-          </div>
-        </div>
-      </>
-    );
+    return <Loading></Loading>;
   }
 
   return (
@@ -87,7 +68,7 @@ const MyBookings = () => {
               <FaCalendarCheck className="w-[100px] h-[100px] "></FaCalendarCheck>
 
               <h2 className="md:text-3xl  text-xl my-5">
-                You haven't made your first booking yet
+                You haven&apos;t made your first booking yet
               </h2>
 
               <p>

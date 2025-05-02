@@ -1,12 +1,12 @@
 import Testo from "./Testo";
-import AwesomeSlider from "react-awesome-slider";
 
-import { Button, Carousel, Typography } from "@material-tailwind/react";
-import UseAxious from "./../../../Hooks/UseAxious";
+import { Carousel } from "@material-tailwind/react";
+import UseAxiousSecure from "./../../../Hooks/UseAxiousSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../../../Components/Loading/Loading";
 
 const Testomonial = () => {
-  const AxiousSecure = UseAxious();
+  const AxiousSecure = UseAxiousSecure();
 
   const getTheReiviews = () => {
     const res = AxiousSecure.get("/reviews");
@@ -14,30 +14,12 @@ const Testomonial = () => {
   };
 
   const random = Math.floor(Math.random * 9);
-  const {
-    data: AllReviews,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
+  const { data: AllReviews, isLoading } = useQuery({
     queryKey: ["allReviews", random],
     queryFn: getTheReiviews,
   });
   if (isLoading) {
-    return (
-      <>
-        <div className="  container w-[100px] mx-auto min-h-[70vh] flex justify-center items-center">
-          <div className="complete">
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__bar" />
-            <div className="complete__ball" />
-          </div>
-        </div>
-      </>
-    );
+    return <Loading></Loading>;
   }
 
   return (

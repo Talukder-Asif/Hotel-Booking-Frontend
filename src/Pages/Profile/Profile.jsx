@@ -3,41 +3,38 @@ import UseUser from "../../Hooks/UseUser";
 import man from "/src/assets/Man1.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
-import useAxiosSecure from "../../../../RegistrationAPP/AppFrontend/src/Hooks/useAxiosSecure";
 import {
   CLOUD_NAME,
   Preset,
 } from "../../Components/Cloudinary/Cloudinary.confog";
+import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 
 const Profile = () => {
   const { userData, isUserLoading, refetch } = UseUser();
-  const { updateUser } = useContext(AuthContext);
-  const axiosPrivate = useAxiosSecure();
+  const { update } = useContext(AuthContext);
+  const AxiousSecure = UseAxiousSecure();
   const [imageUpload, setImageUpload] = useState(null);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
     const Name = form.name.value;
-    const batch = form?.batch ? form.batch.value : "";
     const photoURL = userData?.img;
-    const phone = form.phone.value;
 
     if (!imageUpload) {
-      updateUser(Name, photoURL);
+      update(Name, photoURL);
 
       const userDatas = {
         Name,
         email: userData?.email,
         img: photoURL,
         role: userData?.role,
-        batch,
-        phone,
+        BookingID: userData?.BookingID,
+        Reviews: userData?.Reviews,
       };
 
-      return await axiosPrivate
-        .put(`/user/${userData?.email}`, userDatas)
-        .then((res) => {
+      return await AxiousSecure.put(`/user/${userData?.email}`, userDatas).then(
+        (res) => {
           if (res?.data?.modifiedCount) {
             form.reset();
             setImageUpload(null);
@@ -51,7 +48,8 @@ const Profile = () => {
               timer: 1500,
             });
           }
-        });
+        }
+      );
     }
 
     try {
@@ -70,20 +68,19 @@ const Profile = () => {
       const imagefile = await res?.json();
       const imageURL = imagefile?.secure_url;
 
-      updateUser(Name, imageURL);
+      update(Name, imageURL);
 
       const userDatas = {
         Name,
         email: userData?.email,
         img: imageURL,
         role: userData?.role,
-        batch,
-        phone,
+        BookingID: userData?.BookingID,
+        Reviews: userData?.Reviews,
       };
 
-      await axiosPrivate
-        .put(`/user/${userData?.email}`, userDatas)
-        .then((res) => {
+      await AxiousSecure.put(`/user/${userData?.email}`, userDatas).then(
+        (res) => {
           if (res?.data?.modifiedCount) {
             form.reset();
             setImageUpload(null);
@@ -97,7 +94,8 @@ const Profile = () => {
               timer: 1500,
             });
           }
-        });
+        }
+      );
     } catch (error) {
       Swal.fire({
         title: "Error during update",
@@ -137,7 +135,7 @@ const Profile = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-screen-lg m-auto py-5">
       <h3 className="mb-5 text-4xl md:text-5xl lg:text-5xl text-gray-900 dark:text-[#8f8f8f] font-bold">
         My Profile
       </h3>

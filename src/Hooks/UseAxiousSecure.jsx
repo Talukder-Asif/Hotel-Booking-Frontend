@@ -7,7 +7,7 @@ const AxiousSecure = axios.create({
   baseURL: "http://localhost:3000",
   withCredentials: true,
 });
-const UseAxious = () => {
+const UseAxiousSecure = () => {
   const { OUT } = useContext(AuthContext);
   useEffect(() => {
     AxiousSecure?.interceptors?.response.use(
@@ -29,4 +29,4 @@ const UseAxious = () => {
   return AxiousSecure;
 };
 
-export default UseAxious;
+export default UseAxiousSecure;

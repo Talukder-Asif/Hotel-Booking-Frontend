@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
-import UseAxious from "../../Hooks/UseAxious";
+import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 import Swal from "sweetalert2";
 import {
   Button,
@@ -18,7 +18,7 @@ const BookItem = ({ data, style, num }) => {
   const handleOpen = () => setOpen(!open);
 
   const [startDate, setStartDate] = useState(new Date(bookedDate));
-  const AxiousSecure = UseAxious();
+  const AxiousSecure = UseAxiousSecure();
 
   // useEffect(()=>{
   //      AxiousSecure.put(`/UpdateBooking/${_id}`, date)
@@ -63,9 +63,8 @@ const BookItem = ({ data, style, num }) => {
               });
             });
             console.log("I have some to delete");
-            
+
             console.log("I have some to delete");
-          
           } else if (result.isDenied) {
             Swal.fire("Coludn't complete", "", "info");
           }

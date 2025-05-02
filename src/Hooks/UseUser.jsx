@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../Components/Provider/AuthProvider";
-import UseAxious from "./UseAxious";
+import UseAxiousSecure from "./UseAxiousSecure";
 import { useQuery } from "@tanstack/react-query";
 
 const UseUser = () => {
   const { user } = useContext(AuthContext);
-  const AxiousSecure = UseAxious();
+  const AxiousSecure = UseAxiousSecure();
 
   const fetchUser = async () => {
     const response = await AxiousSecure.get(`/user/${user?.email}`);

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import UseAxious from "./UseAxious";
+import UseAxiousSecure from "./UseAxiousSecure";
 import { AuthContext } from "../Components/Provider/AuthProvider";
 
 const UseRoom = () => {
   const { user } = useContext(AuthContext);
-  const AxiousSecure = UseAxious();
+  const AxiousSecure = UseAxiousSecure();
 
   const fetchBookings = async () => {
     const response = await AxiousSecure.get(`/myBookings?email=${user.email}`);

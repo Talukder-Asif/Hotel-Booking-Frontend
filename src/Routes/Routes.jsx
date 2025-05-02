@@ -11,6 +11,8 @@ import MyBookings from "../Pages/MyBookings/MyBookings";
 import Gallery from "../Pages/Gallery/Gallery";
 import HowToBook from "../Components/HowToBook/HowToBook";
 import Dashboard from "../Components/Dashboard/Dashboard";
+import Profile from "../Pages/Profile/Profile";
+import ManageStaff from "../Pages/Admin/ManageStaff/ManageStaff";
 
 const routes = createBrowserRouter([
   {
@@ -29,13 +31,24 @@ const routes = createBrowserRouter([
       {
         path: "/roomDetails/:id",
         element: <RoomDetails></RoomDetails>,
-        loader: ({ params }) => fetch(`http://localhost:30001/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://hotel-managment-server.vercel.app/api/v1/${params.id}`
+          ),
       },
       {
         path: "/myBookings",
         element: (
           <PrivateProvide>
             <MyBookings></MyBookings>
+          </PrivateProvide>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateProvide>
+            <Profile></Profile>
           </PrivateProvide>
         ),
       },
@@ -49,11 +62,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: (
+          <PrivateProvide>
+            <Dashboard></Dashboard>{" "}
+          </PrivateProvide>
+        ),
         children: [
           {
             path: "/dashboard",
-            element: <h1>Hello</h1>,
+            element: <Profile></Profile>,
+          },
+          {
+            path: "/dashboard/officials",
+            element: <ManageStaff></ManageStaff>,
           },
         ],
       },

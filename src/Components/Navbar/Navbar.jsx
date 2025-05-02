@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import logo from "/Logo.png";
@@ -7,9 +7,6 @@ const Navbar = () => {
   const { user, OUT } = useContext(AuthContext);
   const { userData } = UseUser();
 
-  const [storedImage, setStoredImage] = useState(
-    localStorage.getItem("userImage")
-  );
   const link = (
     <>
       <NavLink
@@ -119,9 +116,15 @@ const Navbar = () => {
                     <a className="justify-between">{userData?.Name}</a>
                   </li>
                   <li>
-                    <a href="/dashboard" className="flex flex-wrap">
-                      Dashboard
-                    </a>
+                    {userData?.role == "Admin" || userData?.role == "Staff" ? (
+                      <a href="/dashboard" className="flex flex-wrap">
+                        Dashboard
+                      </a>
+                    ) : userData?.role == "Customer" ? (
+                      <a href="/profile" className="flex flex-wrap">
+                        Profile
+                      </a>
+                    ) : null}
                   </li>
                   <li>
                     <a className="flex flex-wrap">{userData?.email}</a>

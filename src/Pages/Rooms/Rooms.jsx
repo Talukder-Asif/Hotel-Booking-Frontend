@@ -1,65 +1,49 @@
-import React, { useContext, useEffect, useState } from "react";
-import UseAxious from "../../Hooks/UseAxious";
-import Skeleton from "react-loading-skeleton";
+import { useContext, useEffect, useState } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
 import RoomsPic from "./RoomsPic";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import { FaFilter } from "react-icons/fa";
+import axios from "axios";
+import Loading from "../../Components/Loading/Loading";
 
 const Rooms = () => {
-
   useEffect(() => {
     // Update the document title for this page
-    document.title = 'Smart Hotel || Rooms';
+    document.title = "Smart Hotel || Rooms";
   }, []);
- 
-  const [value, setValue] = useState('')
-  const uri = `/rooms?order=${value}`;
-  const {loading ,user, In, update , Google , OUT ,  creatUser} = useContext(AuthContext)
 
-  const axiousSecure = UseAxious();
-  const handleChange = (e)=>{
-    setValue(e.target.value)
-    console.log(e.target.value)
- }
- useEffect(() => {
-  window.scrollTo(0, 0);
-}, [uri]);
+  const [value, setValue] = useState("");
+  const uri = `https://hotel-managment-server.vercel.app/api/v1/rooms?order=${value}`;
+  const { OUT } = useContext(AuthContext);
 
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    console.log(e.target.value);
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [uri]);
 
-  
- 
+  const getRoom = async () => {
+    const res = await axios.get(uri);
+    return res;
+  };
 
+  const {
+    data: RoomData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["Rooms", uri],
+    queryFn: getRoom,
+  });
 
-  const getRoom = async()=>{
-    const res = await axiousSecure.get(uri)
-    return res
+  if (isLoading) {
+    return <Loading></Loading>;
   }
-
-  const { data:RoomData, isLoading , isError , error } = useQuery({
-    queryKey: ['Rooms',uri],
-    queryFn: getRoom
-  })
-
-  if(isLoading){
-    return <>
-    <div className='  container w-[100px] mx-auto min-h-[70vh] flex justify-center items-center'>
-   <div className="complete">
-  <div className="complete__bar" />
-  <div className="complete__bar" />
-  <div className="complete__bar" />
-  <div className="complete__bar" />
-  <div className="complete__bar" />
-  <div className="complete__ball" />
-</div>
-
-    </div>
-    
-    </>
-  }
-  if(isError){
-    OUT()
+  if (isError) {
+    OUT();
   }
 
   return (
@@ -70,9 +54,14 @@ const Rooms = () => {
         </div>
       </div>
       <div className="relative w-72 mx-auto mt-5 flex items-center gap-3">
-        <span className="flex items-center gap-3"><FaFilter></FaFilter> Filter</span>
-       
-        <select onChange={handleChange} className="block w-full py-2 px-3 border border-gray-300 rounded-lg bg-white text-gray-700 appearance-none hover:border-gray-500 focus:outline-none focus:ring focus:border-blue-500">
+        <span className="flex items-center gap-3">
+          <FaFilter></FaFilter> Filter
+        </span>
+
+        <select
+          onChange={handleChange}
+          className="block w-full py-2 px-3 border border-gray-300 rounded-lg bg-white text-gray-700 appearance-none hover:border-gray-500 focus:outline-none focus:ring focus:border-blue-500"
+        >
           <option value="">Select</option>
           <option value="desc">Highest to Lowest Price</option>
           <option value="asec">Lowest to Highest Price</option>
@@ -94,7 +83,7 @@ const Rooms = () => {
         </div>
       </div>
       <div className="grid  max-w-[1320px] my-10 gap-10 2xl:grid-cols-2 grid-cols-1 mx-auto">
-        {RoomData.data.map((value) => (
+        {RoomData?.data.map((value) => (
           <RoomsPic key={value._id} data={value}></RoomsPic>
         ))}
       </div>
