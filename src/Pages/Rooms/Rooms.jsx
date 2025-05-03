@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
 import RoomsPic from "./RoomsPic";
-import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../Components/Provider/AuthProvider";
 import { FaFilter } from "react-icons/fa";
-import axios from "axios";
 import Loading from "../../Components/Loading/Loading";
+import UseRoom from "../../Hooks/UseRoom";
 
 const Rooms = () => {
   useEffect(() => {
@@ -14,36 +12,21 @@ const Rooms = () => {
   }, []);
 
   const [value, setValue] = useState("");
-  const uri = `https://hotel-managment-server.vercel.app/api/v1/rooms?order=${value}`;
-  const { OUT } = useContext(AuthContext);
+  const { rooms, isLoading, refetch } = UseRoom({ value });
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    console.log(e.target.value);
+    refetch();
   };
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [uri]);
-
-  const getRoom = async () => {
-    const res = await axios.get(uri);
-    return res;
-  };
-
-  const {
-    data: RoomData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["Rooms", uri],
-    queryFn: getRoom,
-  });
+    if (value) {
+      refetch();
+    }
+  }, [value, refetch]);
 
   if (isLoading) {
     return <Loading></Loading>;
-  }
-  if (isError) {
-    OUT();
   }
 
   return (
@@ -83,15 +66,10 @@ const Rooms = () => {
         </div>
       </div>
       <div className="grid  max-w-[1320px] my-10 gap-10 2xl:grid-cols-2 grid-cols-1 mx-auto">
-        {RoomData?.data.map((value) => (
+        {rooms?.map((value) => (
           <RoomsPic key={value._id} data={value}></RoomsPic>
         ))}
       </div>
-      {/* <div className="grid xl:grid-cols-3 max-w-5xl my-10 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 mx-auto">
-        {RoomData.data.map((value) => (
-          <RoomsPic key={value._id} data={value}></RoomsPic>
-        ))}
-      </div> */}
     </div>
   );
 };

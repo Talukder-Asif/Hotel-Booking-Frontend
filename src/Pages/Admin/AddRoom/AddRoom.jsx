@@ -86,6 +86,9 @@ const AddRoom = () => {
         AC: form.AC.value,
         TV: form.TV.value,
         BeachView: form.BeachView.value,
+        roomCode: form.roomCode.value,
+        Breakfast: form.Breakfast.value,
+        Laundry: form.Laundry.value,
         img: img,
         roomImages: [roomImages1, roomImages2],
         unAvailable: [],
@@ -172,29 +175,73 @@ const AddRoom = () => {
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input
-            type="number"
-            name="pricePerNight"
-            placeholder="Price per Night"
-            className="w-full p-2 border rounded"
-            required
-          />
+          <div>
+            <label className="block text-sm mb-1">Price</label>
+            <input
+              type="number"
+              name="pricePerNight"
+              placeholder="Price per Night"
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
 
-          <input
-            type="number"
-            name="roomSize"
-            placeholder="Room Size (sq. ft.)"
-            className="w-full p-2 border rounded"
-            required
-          />
+          <div>
+            <label className="block text-sm mb-1">Room Size</label>
+            <input
+              type="number"
+              name="roomSize"
+              placeholder="Room Size (sq. ft.)"
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
 
-          <input
-            type="number"
-            name="bedFor"
-            placeholder="Beds For (number of people)"
-            className="w-full p-2 border rounded"
-            required
-          />
+          <div>
+            <label className="block text-sm mb-1">Bed</label>
+
+            <input
+              type="number"
+              name="bedFor"
+              placeholder="Beds For (number of people)"
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Room Code</label>
+
+            <input
+              type="number"
+              name="roomCode"
+              placeholder="Room Code"
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm mb-1">Breakfast</label>
+            <select
+              name="Breakfast"
+              className="w-full border p-2 rounded"
+              required
+            >
+              <option value="Include">Include</option>
+              <option value="Not Include">Not Include</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Laundry</label>
+            <select
+              name="Laundry"
+              className="w-full border p-2 rounded"
+              required
+            >
+              <option value="Include">Include</option>
+              <option value="Not Include">Not Include</option>
+            </select>
+          </div>
         </div>
         <div className="grid grid-cols-3 gap-4">
           <div>

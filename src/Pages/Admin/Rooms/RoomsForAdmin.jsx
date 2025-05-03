@@ -4,7 +4,6 @@ import RoomCard from "./RoomCard";
 
 const RoomsForAdmin = () => {
   const { rooms, isLoading, refetch } = UseRoom();
-  console.log(rooms);
 
   if (isLoading) return <Loading></Loading>;
 

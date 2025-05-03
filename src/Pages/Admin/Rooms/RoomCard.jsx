@@ -27,7 +27,6 @@ const RoomCard = ({ data }) => {
   if (isLoading) return <Loading></Loading>;
 
   let averageRating = 0;
-  console.log(Reviews);
 
   if (Reviews?.data?.length) {
     for (let review of Reviews.data) {
@@ -80,7 +79,7 @@ const RoomCard = ({ data }) => {
           <span className="text-lg"> ({Reviews?.data?.length})</span>
         </div>
         <Link
-          to={`/roomDetails/${_id}`}
+          //   to={`/roomDetails/${_id}`}
           className="btn flex justify-center mx-auto max-w-[140px] border-none  bg-[#002A3F] hover:bg-[#2c699e] text-white  "
         >
           Details

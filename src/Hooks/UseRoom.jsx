@@ -3,12 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiousSecure from "./UseAxiousSecure";
 import { AuthContext } from "../Components/Provider/AuthProvider";
 
-const UseRoom = () => {
+const UseRoom = ({ value }) => {
   const { user } = useContext(AuthContext);
   const AxiousSecure = UseAxiousSecure();
 
+  console.log(value);
+
   const fetchRoom = async () => {
-    const response = await AxiousSecure.get(`/rooms`);
+    const response = await AxiousSecure.get(`/rooms?order=${value}`);
     return response.data;
   };
 

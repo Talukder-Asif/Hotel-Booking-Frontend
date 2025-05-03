@@ -1,122 +1,125 @@
 import { useContext, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import Seats from "./Seats/Seats";
-import { useQuery } from "@tanstack/react-query";
 import ReviewsPOst from "./Reviews/ReviewsPOst";
 import DisplayReviews from "./Reviews/DisplayReviews";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
-import axios from "axios";
 import Loading from "../../Components/Loading/Loading";
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+import LightGallery from "lightgallery/react";
+
+// Plugins
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import Reservation from "./Reservation/Reservation";
+
+import { FaTv } from "react-icons/fa";
 
 const RoomDetails = () => {
   const { user } = useContext(AuthContext);
 
-  const loadedData = useLoaderData();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const {
-    roomId,
+    roomCode,
     img,
     description,
     roomSize,
     roomImages,
     // availability,
-    priceRange,
+    pricePerNight,
+    _id,
   } = useLoaderData();
-
-  // const [seat, setSeats] = useState([]);
-  const uri = `https://hotel-managment-server.vercel.app/api/v1/seats/${roomId}`;
 
   useEffect(() => {
     // Update the document title for this page
-    document.title = `Smart Hotel || Room ${roomId}`;
-  }, [roomId]);
+    document.title = `Smart Hotel || Room ${roomCode}`;
+  }, [roomCode]);
+  const images = [img, ...roomImages].filter(Boolean);
 
-  const getSeats = async () => {
-    const res = await axios.get(uri);
-    return res;
-  };
-
-  const {
-    data: seatsinHere,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: [`seatsData${roomId}`, uri],
-    queryFn: getSeats,
-  });
-
-  if (isLoading) {
+  if (!roomCode) {
     return <Loading></Loading>;
   }
-  if (isError) {
-    return <p>error</p>;
-  }
-
-  const seatAvailable = seatsinHere.data.filter(
-    (item) => item?.available == true
-  );
 
   return (
-    <>
-      <div className="my-10 lg:flex-row flex items-center gap-10 flex-col justify-center">
-        <div className="flex justify-center  gap-2 flex-col items-center">
-          <div className="max-w-[370px] ">
-            {<img className="w-full rounded-xl" src={img} alt="" /> || (
-              <Skeleton></Skeleton>
+    <div className="my-10 max-w-6xl mx-auto px-4">
+      <div className="flex flex-col lg:flex-row items-center gap-10">
+        {/* Image Section */}
+        <div className="flex flex-col items-center gap-4 w-full lg:w-1/2">
+          {/* Main Image */}
+          <div className="w-full rounded-xl overflow-hidden shadow-lg">
+            {img ? (
+              <img
+                src={img}
+                alt="Main Room"
+                className="w-full h-auto object-cover"
+              />
+            ) : (
+              <Skeleton className="w-full h-[250px]" />
             )}
           </div>
-          <div className="max-w-[370px] flex gap-2 ">
-            {<img className="w-[32%]" src={roomImages[0]} alt="" /> || (
-              <Skeleton></Skeleton>
-            )}
-            {<img className="w-[32%]" src={roomImages[1]} alt="" /> || (
-              <Skeleton></Skeleton>
-            )}
-            {<img className="w-[32%]" src={img} alt="" /> || (
-              <Skeleton></Skeleton>
-            )}
-          </div>
+
+          {/* Gallery Thumbnails */}
+          <LightGallery
+            speed={500}
+            plugins={[lgThumbnail, lgZoom]}
+            elementClassNames="flex gap-3 justify-center flex-wrap w-full"
+          >
+            {images.map((src, idx) => (
+              <a href={src} key={idx}>
+                <img
+                  src={src}
+                  alt={`Gallery ${idx + 1}`}
+                  className=" w-14 h-10 md:w-28 md:h-20 object-cover rounded-md cursor-pointer hover:scale-105 transition"
+                />
+              </a>
+            ))}
+          </LightGallery>
         </div>
 
-        <div className="flex flex-col lg:justify-start justify-center">
-          <h2 className="lg:text-4xl font-semibold text-3xl lg:text-start text-center max-w-md">
+        {/* Details Section */}
+        <div className="flex-1">
+          <h2 className="text-4xl font-bold mb-4 text-center lg:text-left">
             We are <span className="text-[#002A3F]">here</span> to Offer
           </h2>
-          <p className="lg:text-xl mt-4 font-medium md:text-lg lg:text-start text-center">
+          <p className="text-lg text-gray-700 mb-4 text-center lg:text-left">
             {description}
           </p>
-          <p className="mt-3 lg:text-start text-center font-medium">
-            Price <span className="text-[#002A3F]">Per</span> Night : $
-            {priceRange} - ${priceRange + 300}
-          </p>
-          <p className="mt-3 lg:text-start text-center font-medium">
-            Room <span className="text-[#002A3F]">Size</span> : {roomSize}
-          </p>
-          <p className="mt-4 lg:text-start text-center font-medium">
-            {seatAvailable.length ? (
-              <p>
-                <span className="px-[10px] py-[1px] rounded-full mr-3 bg-[#002A3F] "></span>{" "}
-                Available
-              </p>
-            ) : (
-              <p>
-                <span className="px-[10px] py-[1px] rounded-full mr-3 bg-red-500 "></span>{" "}
-                NotAvailable
-              </p>
-            )}
-          </p>
+          <ul className="space-y-2 text-center lg:text-left text-base text-gray-800 font-medium">
+            <li>
+              Price <span className="text-[#002A3F]">Per Night:</span>{" "}
+              {pricePerNight} BDT
+            </li>
+            <li>
+              Room Size: <span className="text-[#2196F3]">{roomSize}</span> ft
+              <sup>2</sup>
+            </li>
+          </ul>
         </div>
       </div>
-      <Seats loadedData={loadedData} data={seatsinHere.data}></Seats>
-      <div className="max-w-5xl mx-auto">
-        {user ? <ReviewsPOst roomID={roomId}></ReviewsPOst> : <></>}
-
-        <DisplayReviews roomID={roomId}></DisplayReviews>
+      {/* Resurvation section */}
+      <div className="mt-10 border-t-2 pt-10 grid grid-cols-2">
+        <div>
+          <p className="flex gap-2 text-xl items-center">
+            <span>
+              <FaTv />
+            </span>{" "}
+            - Available
+          </p>
+        </div>
+        <Reservation></Reservation>
       </div>
-    </>
+
+      {/* Reviews Section */}
+      <div className="mt-10">
+        {user && <ReviewsPOst roomID={_id} />}
+        <DisplayReviews roomID={_id} />
+      </div>
+    </div>
   );
 };
 

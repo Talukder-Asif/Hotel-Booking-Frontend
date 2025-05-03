@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
-import "react-loading-skeleton/dist/skeleton.css";
-import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { Rating } from "@material-tailwind/react";
 import axios from "axios";
 import Loading from "../../Components/Loading/Loading";
+import { Rating } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const RoomsPic = ({ data }) => {
-  const { _id, roomId, img, roomImages, priceRange } = data;
-
-  const uri = `https://hotel-managment-server.vercel.app/api/v1/perReviews/${roomId}`;
+  const { _id, title, img, roomImages, pricePerNight } = data;
+  const uri = `http://localhost:3000/perReviews/${_id}`;
 
   const getReviews = () => {
     const res = axios.get(uri);
@@ -21,7 +19,7 @@ const RoomsPic = ({ data }) => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: [`SingleReviewsData${roomId + 1}`],
+    queryKey: [`SingleReviewsData${_id}`],
     queryFn: getReviews,
   });
 
@@ -34,16 +32,14 @@ const RoomsPic = ({ data }) => {
 
   let averageRating = 0;
 
-  for (let value of Reviews.data) {
-    // console.log(value);
-    averageRating = averageRating + value.rating;
-    // console.log(averageRating);
+  if (Reviews?.data?.length) {
+    for (let review of Reviews.data) {
+      averageRating += review?.rating || 0;
+    }
+    averageRating = Math.floor(averageRating / Reviews.data.length);
+  } else {
+    averageRating = 0;
   }
-  averageRating = Math.floor(averageRating / Reviews?.data?.length);
-  // console.log("Review Data ", Reviews?.data);
-  // console.log("Review rating average ", averageRating);
-  // console.log("legnth", Reviews?.data.length);
-
   return (
     <>
       <div className="max-w-[700px] w-full  h-full relative p-5 bg-white border-gray-400 border-[4px] rounded-3xl shadow-2xl ouline-gray-600 mx-auto">
@@ -68,11 +64,12 @@ const RoomsPic = ({ data }) => {
           />
         </div>
         <p className="text-blue-500 lg:text-3xl sm:text-2xl text-xl text-center font-bold">
-          We Offer you
+          {title}
         </p>
         <p className="lg:text-xl text-center my-3">
-          Price <span className="text-blue-500">Range</span> :${priceRange} - $
-          {priceRange + 300}
+          Price Per Night :
+          <span className="text-blue-500">{pricePerNight} </span>
+          BDT
         </p>
         <div className="mx-auto flex justify-center mt-4 mb-6 items-center">
           <Rating className=" " value={averageRating} readonly></Rating>{" "}
