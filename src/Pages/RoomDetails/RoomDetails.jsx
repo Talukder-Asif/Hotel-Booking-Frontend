@@ -1,18 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 import ReviewsPOst from "./Reviews/ReviewsPOst";
 import DisplayReviews from "./Reviews/DisplayReviews";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import Loading from "../../Components/Loading/Loading";
-import "lightgallery/css/lightgallery.css";
-import "lightgallery/css/lg-thumbnail.css";
-import "lightgallery/css/lg-zoom.css";
-import LightGallery from "lightgallery/react";
 
 // Plugins
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
 import Reservation from "./Reservation/Reservation";
 
 import {
@@ -29,6 +22,7 @@ import {
   FaConciergeBell,
   FaShieldAlt,
 } from "react-icons/fa";
+import RoomImage from "./RoomImg/RoomImage";
 
 const RoomDetails = () => {
   const { user } = useContext(AuthContext);
@@ -43,28 +37,31 @@ const RoomDetails = () => {
     description,
     roomSize,
     roomImages,
-    // availability,
+    unAvailable,
     pricePerNight,
     _id,
+    bedFor,
+    TV,
+    BeachView,
+    Laundry,
+    Breakfast,
+    AC,
   } = useLoaderData();
-  const roomData = useLoaderData();
-
-  console.log(roomData);
   const amenities = [
     [
       {
         label: "Bed For",
-        value: `${roomData?.bedFor || "-"} People`,
+        value: `${bedFor || "-"} People`,
         icon: <FaBed className="inline mr-2" />,
       },
       {
         label: "Smart TV",
-        value: roomData?.TV || "No",
+        value: TV || "No",
         icon: <FaTv className="inline mr-2" />,
       },
       {
         label: "Side Sea View",
-        value: roomData?.BeachView || "No",
+        value: BeachView || "No",
         icon: <FaUmbrellaBeach className="inline mr-2" />,
       },
     ],
@@ -76,19 +73,19 @@ const RoomDetails = () => {
       },
       {
         label: "Laundry",
-        value: roomData?.Laundry || "No",
+        value: Laundry || "No",
         icon: <FaTshirt className="inline mr-2" />,
       },
       {
         label: "Breakfast",
-        value: roomData?.Breakfast || "No",
+        value: Breakfast || "No",
         icon: <FaUtensils className="inline mr-2" />,
       },
     ],
     [
       {
         label: "AC",
-        value: roomData?.AC || "No",
+        value: AC || "No",
         icon: <FaSnowflake className="inline mr-2" />,
       },
       {
@@ -120,7 +117,6 @@ const RoomDetails = () => {
       },
     ],
   ];
-  const images = [img, ...roomImages].filter(Boolean);
 
   if (!roomCode) {
     return <Loading></Loading>;
@@ -130,8 +126,7 @@ const RoomDetails = () => {
     <div className="my-10 max-w-6xl mx-auto px-4">
       <div className="flex flex-col lg:flex-row items-center gap-10">
         {/* Image Section */}
-        <div className="flex flex-col items-center gap-4 w-full lg:w-1/2">
-          {/* Main Image */}
+        {/* <div className="flex flex-col items-center gap-4 w-full lg:w-1/2">
           <div className="w-full rounded-xl overflow-hidden shadow-lg">
             {img ? (
               <img
@@ -144,7 +139,6 @@ const RoomDetails = () => {
             )}
           </div>
 
-          {/* Gallery Thumbnails */}
           <LightGallery
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
@@ -160,7 +154,9 @@ const RoomDetails = () => {
               </a>
             ))}
           </LightGallery>
-        </div>
+        </div> */}
+
+        <RoomImage images={roomImages} img={img}></RoomImage>
 
         {/* Details Section */}
         <div className="flex-1">
@@ -211,7 +207,12 @@ const RoomDetails = () => {
           </table>
         </div>
 
-        <Reservation></Reservation>
+        <Reservation
+          unAvailable={unAvailable}
+          pricePerNight={pricePerNight}
+          _id={_id}
+          bedFor={bedFor}
+        ></Reservation>
       </div>
 
       {/* Reviews Section */}

@@ -7,8 +7,6 @@ const UseRoom = ({ value }) => {
   const { user } = useContext(AuthContext);
   const AxiousSecure = UseAxiousSecure();
 
-  console.log(value);
-
   const fetchRoom = async () => {
     const response = await AxiousSecure.get(`/rooms?order=${value}`);
     return response.data;
