@@ -16,6 +16,7 @@ import ManageStaff from "../Pages/Admin/ManageStaff/ManageStaff";
 import ManageGuest from "../Pages/Admin/ManageGuest/ManageGuest";
 import AddRoom from "../Pages/Admin/AddRoom/AddRoom";
 import RoomsForAdmin from "../Pages/Admin/Rooms/RoomsForAdmin";
+import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 
 const routes = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/roomDetails/:id",
-        element: <RoomDetails></RoomDetails>,
+        element: (
+          <PrivateProvide>
+            <RoomDetails></RoomDetails>
+          </PrivateProvide>
+        ),
         loader: ({ params }) => fetch(`http://localhost:3000/${params.id}`),
       },
       {
@@ -49,6 +54,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateProvide>
             <Profile></Profile>
+          </PrivateProvide>
+        ),
+      },
+      {
+        path: "/payment",
+        element: (
+          <PrivateProvide>
+            <PaymentPage></PaymentPage>
           </PrivateProvide>
         ),
       },

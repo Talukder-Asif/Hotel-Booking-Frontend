@@ -34,6 +34,7 @@ const RoomDetails = () => {
   const {
     roomCode,
     img,
+    title,
     description,
     roomSize,
     roomImages,
@@ -132,15 +133,16 @@ const RoomDetails = () => {
         {/* Details Section */}
         <div className="flex-1">
           <h2 className="text-4xl font-bold mb-4 text-center lg:text-left">
-            We are <span className="text-[#002A3F]">here</span> to Offer
+            {title}
           </h2>
           <p className="text-lg text-gray-700 mb-4 text-center lg:text-left">
             {description}
           </p>
           <ul className="space-y-2 text-center lg:text-left text-base text-gray-800 font-medium">
             <li>
-              Price <span className="text-[#002A3F]">Per Night:</span>{" "}
-              {pricePerNight} BDT
+              Price Per Night:{" "}
+              <span className="text-[#2196F3]">{pricePerNight} </span>
+              BDT
             </li>
             <li>
               Room Size: <span className="text-[#2196F3]">{roomSize}</span> ft

@@ -10,7 +10,6 @@ const Rooms = () => {
     // Update the document title for this page
     document.title = "Smart Hotel || Rooms";
   }, []);
-
   const [value, setValue] = useState("");
   const { rooms, isLoading, refetch } = UseRoom({ value });
 
