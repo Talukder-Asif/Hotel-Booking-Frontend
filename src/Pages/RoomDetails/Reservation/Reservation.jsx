@@ -6,10 +6,18 @@ import { FaUser } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const Reservation = ({ unAvailable = [], pricePerNight, _id, bedFor }) => {
+const Reservation = ({
+  unAvailable = [],
+  pricePerNight,
+  _id,
+  bedFor,
+  title,
+  roomCode,
+}) => {
   const navigate = useNavigate();
 
-  const unAvailableCheckout = unAvailable?.map((date) => {
+  const unAvailableDates = unAvailable?.map((date) => new Date(date));
+  const unAvailableCheckout = unAvailableDates?.map((date) => {
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
     return nextDay;
@@ -22,7 +30,7 @@ const Reservation = ({ unAvailable = [], pricePerNight, _id, bedFor }) => {
   const handleCheckout = (date) => {
     if (!checkIn) return;
 
-    const isInvalid = unAvailable.some(
+    const isInvalid = unAvailableDates.some(
       (unDate) => unDate > checkIn && unDate <= date
     );
 
@@ -84,6 +92,8 @@ const Reservation = ({ unAvailable = [], pricePerNight, _id, bedFor }) => {
       checkOut: checkOut.toLocaleDateString(),
       adultPeople,
       children,
+      title,
+      roomCode,
       isCheckIn: false,
       isCheckOut: false,
       payment: "unpaid",
@@ -92,7 +102,7 @@ const Reservation = ({ unAvailable = [], pricePerNight, _id, bedFor }) => {
       totalPrice: pricePerNight * totalNights,
     };
     const stayDates = getDatesInRange(checkIn, checkOut);
-    const newUnAvailable = [...unAvailable, ...stayDates];
+    const newUnAvailable = [...unAvailableDates, ...stayDates];
 
     navigate("/payment", {
       state: { newUnAvailable, reservationData },
@@ -114,7 +124,7 @@ const Reservation = ({ unAvailable = [], pricePerNight, _id, bedFor }) => {
                 setCheckOut(null);
               }}
               minDate={new Date()}
-              excludeDates={unAvailable}
+              excludeDates={unAvailableDates}
               placeholderText="Choose arrival"
               className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               calendarClassName="border border-gray-200 shadow-lg rounded-lg"
@@ -248,6 +258,8 @@ Reservation.propTypes = {
   pricePerNight: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
   bedFor: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  roomCode: PropTypes.string.isRequired,
 };
 
 export default Reservation;

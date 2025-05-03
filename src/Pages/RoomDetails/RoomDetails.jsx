@@ -185,6 +185,8 @@ const RoomDetails = () => {
           pricePerNight={pricePerNight}
           _id={_id}
           bedFor={bedFor}
+          title={title}
+          roomCode={roomCode}
         ></Reservation>
       </div>
 
