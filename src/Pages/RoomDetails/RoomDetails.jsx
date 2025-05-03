@@ -126,35 +126,6 @@ const RoomDetails = () => {
     <div className="my-10 max-w-6xl mx-auto px-4">
       <div className="flex flex-col lg:flex-row items-center gap-10">
         {/* Image Section */}
-        {/* <div className="flex flex-col items-center gap-4 w-full lg:w-1/2">
-          <div className="w-full rounded-xl overflow-hidden shadow-lg">
-            {img ? (
-              <img
-                src={img}
-                alt="Main Room"
-                className="w-full h-auto object-cover"
-              />
-            ) : (
-              <Skeleton className="w-full h-[250px]" />
-            )}
-          </div>
-
-          <LightGallery
-            speed={500}
-            plugins={[lgThumbnail, lgZoom]}
-            elementClassNames="flex gap-3 justify-center flex-wrap w-full"
-          >
-            {images.map((src, idx) => (
-              <a href={src} key={idx}>
-                <img
-                  src={src}
-                  alt={`Gallery ${idx + 1}`}
-                  className=" w-14 h-10 md:w-28 md:h-20 object-cover rounded-md cursor-pointer hover:scale-105 transition"
-                />
-              </a>
-            ))}
-          </LightGallery>
-        </div> */}
 
         <RoomImage images={roomImages} img={img}></RoomImage>
 

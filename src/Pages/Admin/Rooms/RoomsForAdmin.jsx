@@ -3,7 +3,7 @@ import UseRoom from "../../../Hooks/UseRoom";
 import RoomCard from "./RoomCard";
 
 const RoomsForAdmin = () => {
-  const { rooms, isLoading, refetch } = UseRoom();
+  const { rooms, isLoading, refetch } = UseRoom({});
 
   if (isLoading) return <Loading></Loading>;
 
