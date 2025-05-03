@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import ReviewsPOst from "./Reviews/ReviewsPOst";
@@ -15,7 +15,20 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 import Reservation from "./Reservation/Reservation";
 
-import { FaTv } from "react-icons/fa";
+import {
+  FaBed,
+  FaTv,
+  FaUmbrellaBeach,
+  FaWifi,
+  FaTshirt,
+  FaUtensils,
+  FaSnowflake,
+  FaSwimmingPool,
+  FaSocks,
+  FaDog,
+  FaConciergeBell,
+  FaShieldAlt,
+} from "react-icons/fa";
 
 const RoomDetails = () => {
   const { user } = useContext(AuthContext);
@@ -34,11 +47,79 @@ const RoomDetails = () => {
     pricePerNight,
     _id,
   } = useLoaderData();
+  const roomData = useLoaderData();
 
-  useEffect(() => {
-    // Update the document title for this page
-    document.title = `Smart Hotel || Room ${roomCode}`;
-  }, [roomCode]);
+  console.log(roomData);
+  const amenities = [
+    [
+      {
+        label: "Bed For",
+        value: `${roomData?.bedFor || "-"} People`,
+        icon: <FaBed className="inline mr-2" />,
+      },
+      {
+        label: "Smart TV",
+        value: roomData?.TV || "No",
+        icon: <FaTv className="inline mr-2" />,
+      },
+      {
+        label: "Side Sea View",
+        value: roomData?.BeachView || "No",
+        icon: <FaUmbrellaBeach className="inline mr-2" />,
+      },
+    ],
+    [
+      {
+        label: "Unlimited Wifi",
+        value: "Yes",
+        icon: <FaWifi className="inline mr-2" />,
+      },
+      {
+        label: "Laundry",
+        value: roomData?.Laundry || "No",
+        icon: <FaTshirt className="inline mr-2" />,
+      },
+      {
+        label: "Breakfast",
+        value: roomData?.Breakfast || "No",
+        icon: <FaUtensils className="inline mr-2" />,
+      },
+    ],
+    [
+      {
+        label: "AC",
+        value: roomData?.AC || "No",
+        icon: <FaSnowflake className="inline mr-2" />,
+      },
+      {
+        label: "Swimming Pool",
+        value: "Available",
+        icon: <FaSwimmingPool className="inline mr-2" />,
+      },
+      {
+        label: "Free Slippers",
+        value: "Yes",
+        icon: <FaSocks className="inline mr-2" />,
+      },
+    ],
+    [
+      {
+        label: "Pets Allowed",
+        value: "No",
+        icon: <FaDog className="inline mr-2" />,
+      },
+      {
+        label: "Room Service",
+        value: "Yes",
+        icon: <FaConciergeBell className="inline mr-2" />,
+      },
+      {
+        label: "24 Hour Security",
+        value: "Yes",
+        icon: <FaShieldAlt className="inline mr-2" />,
+      },
+    ],
+  ];
   const images = [img, ...roomImages].filter(Boolean);
 
   if (!roomCode) {
@@ -103,14 +184,33 @@ const RoomDetails = () => {
       </div>
       {/* Resurvation section */}
       <div className="mt-10 border-t-2 pt-10 grid grid-cols-2">
-        <div>
-          <p className="flex gap-2 text-xl items-center">
-            <span>
-              <FaTv />
-            </span>{" "}
-            - Available
-          </p>
+        <div className="mx-5 my-5">
+          <table className="w-full max-w-4xl border-collapse font-sans">
+            <tbody>
+              {amenities.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((item, cellIndex) => (
+                    <td
+                      key={cellIndex}
+                      className="border border-gray-300 p-3 text-left align-middle"
+                    >
+                      <div className="flex items-center">
+                        <span className="text-gray-600 mr-2">{item.icon}</span>
+                        <div>
+                          <span className="font-medium">{item.label}</span>
+                          <span className="block text-sm text-gray-600">
+                            {item.value}
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
         <Reservation></Reservation>
       </div>
 
