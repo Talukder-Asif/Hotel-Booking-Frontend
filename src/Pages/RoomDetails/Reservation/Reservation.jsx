@@ -30,7 +30,7 @@ const Reservation = ({
   const handleCheckout = (date) => {
     if (!checkIn) return;
 
-    const isInvalid = unAvailableDates.some(
+    const isInvalid = unAvailableDates?.some(
       (unDate) => unDate > checkIn && unDate <= date
     );
 
@@ -40,14 +40,19 @@ const Reservation = ({
       const unDatesBeforeCheckout = unAvailableCheckout?.find(
         (unDate) => unDate < date
       );
-      const formattedDates = unDatesBeforeCheckout.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-
-      setError(`Please select checkout before: ${formattedDates}`);
-      return;
+      if (unDatesBeforeCheckout) {
+        const formattedDates = unDatesBeforeCheckout.toLocaleDateString(
+          "en-US",
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }
+        );
+        setError(`Please select checkout before: ${formattedDates}`);
+      } else {
+        setError("Selected checkout date overlaps with unavailable dates.");
+      }
     }
     setError(null);
     setCheckOut(date);

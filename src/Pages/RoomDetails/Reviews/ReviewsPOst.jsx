@@ -20,49 +20,49 @@ const ReviewsPOst = ({ roomID }) => {
     setUserReview(e.target.value);
   };
 
-  const GetPersonalBookingData = () => {
-    const res = axios.get(
-      `https://hotel-managment-server.vercel.app/api/v1/getBookingByEmailId?email=${user?.email}&roomId=${roomID}`
-    );
-    return res;
-  };
+  // const GetPersonalBookingData = () => {
+  //   const res = axios.get(
+  //     `https://hotel-managment-server.vercel.app/api/v1/getBookingByEmailId?email=${user?.email}&roomId=${roomID}`
+  //   );
+  //   return res;
+  // };
 
-  const { data: personalBooking, isLoading } = useQuery({
-    queryKey: ["personalBookedData", user],
-    queryFn: GetPersonalBookingData,
-  });
+  // const { data: personalBooking, isLoading } = useQuery({
+  //   queryKey: ["personalBookedData", user],
+  //   queryFn: GetPersonalBookingData,
+  // });
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  // if (isLoading) {
+  //   return <Loading></Loading>;
+  // }
 
-  const date = new Date();
-  console.log(personalBooking.data);
-  const handlePostReview = () => {
-    const reviewData = {
-      roomID: roomID.toString(),
-      review: userReview,
-      date,
-      rating: userRating,
-      name: user.displayName,
-    };
-    axios
-      .post(
-        "https://hotel-managment-server.vercel.app/api/v1/postReview",
-        reviewData
-      )
-      .then((res) => {
-        console.log(res.data);
-        Swal.fire({
-          title: "Thank You",
-          text: "We are happy to get the review",
-          icon: "success",
-        });
-        setUserRating(0);
-        setUserReview("");
-        location.reload();
-      });
-  };
+  // const date = new Date();
+  // console.log(personalBooking.data);
+  // const handlePostReview = () => {
+  //   const reviewData = {
+  //     roomID: roomID.toString(),
+  //     review: userReview,
+  //     date,
+  //     rating: userRating,
+  //     name: user.displayName,
+  //   };
+  //   axios
+  //     .post(
+  //       "https://hotel-managment-server.vercel.app/api/v1/postReview",
+  //       reviewData
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       Swal.fire({
+  //         title: "Thank You",
+  //         text: "We are happy to get the review",
+  //         icon: "success",
+  //       });
+  //       setUserRating(0);
+  //       setUserReview("");
+  //       location.reload();
+  //     });
+  // };
 
   return (
     <>
@@ -92,10 +92,10 @@ const ReviewsPOst = ({ roomID }) => {
           value={userReview}
           onChange={handleReviewChange}
         />
-        {personalBooking.data.length ? (
+        {/* {personalBooking.data.length ? (
           <>
             <button
-              onClick={handlePostReview}
+              // onClick={handlePostReview}
               className={` bg-blue-500 btn text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600 cursor-pointer `}
             >
               Post Review
@@ -105,13 +105,13 @@ const ReviewsPOst = ({ roomID }) => {
           <>
             <button
               disabled
-              onClick={handlePostReview}
+              // onClick={handlePostReview}
               className={` bg-blue-500 btn text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600 cursor-pointer `}
             >
               Post Review
             </button>
           </>
-        )}
+        )} */}
       </div>
     </>
   );

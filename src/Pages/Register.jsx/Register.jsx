@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
-import { FaArrowLeft } from "react-icons/fa";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -75,7 +74,7 @@ const Register = () => {
           Reviews: [],
         };
         axios
-          .post("http://localhost:3000/user", userData)
+          .post("https://hotel-managment-server-ten.vercel.app/user", userData)
           .then((response) => {
             console.log("User created:", response.data);
           })
@@ -119,7 +118,7 @@ const Register = () => {
           Reviews: [],
         };
         axios
-          .post("http://localhost:3000/user", userData)
+          .post("https://hotel-managment-server-ten.vercel.app/user", userData)
           .then((response) => {
             console.log("User created:", response.data);
           })
@@ -147,21 +146,11 @@ const Register = () => {
       });
   };
 
-  const handleback = () => {
-    window.history.back();
-  };
   return (
     <form
       onSubmit={handleRegister}
-      className="form mx-auto max-w-md border-2 border-blue-500 mt-12 bg-white p-8 rounded-lg"
+      className="form mx-auto max-w-md border-2 border-blue-500 my-12 bg-white p-8 rounded-lg"
     >
-      <div
-        onClick={handleback}
-        className="hover:border-2 hover:border-blue-600 border-2 p-3 border-white rounded-full"
-      >
-        <FaArrowLeft className=""></FaArrowLeft>
-      </div>
-
       <p className=" text-2xl title text-blue-600 text-center font-semibold relative flex items-center  pb-3 pt-1">
         Register
       </p>

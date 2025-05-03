@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -41,9 +40,6 @@ const Login = () => {
         });
       });
   };
-  const handleback = () => {
-    window.history.back();
-  };
 
   const handleGoogle = () => {
     Google()
@@ -57,7 +53,7 @@ const Login = () => {
           Reviews: [],
         };
         axios
-          .post("http://localhost:3000/user", userData)
+          .post("https://hotel-managment-server-ten.vercel.app/user", userData)
           .then((response) => {
             console.log("User created:", response.data);
           })
@@ -87,12 +83,6 @@ const Login = () => {
         onSubmit={handleLogin}
         className="form mx-auto max-w-md bg-white border-2 my-[5%] border-blue-500  p-8 rounded-lg"
       >
-        <div
-          onClick={handleback}
-          className="hover:border-2 hover:border-blue-600 border-2 p-3 border-white rounded-full"
-        >
-          <FaArrowLeft className=""></FaArrowLeft>
-        </div>
         <p className=" text-2xl title text-blue-600 text-center font-semibold relative flex items-center  py-3">
           Login
         </p>

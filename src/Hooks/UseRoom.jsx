@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "./useAxios";
+import UseAxiousSecure from "./UseAxiousSecure";
 
 const UseRoom = ({ value }) => {
-  const axiosPublic = useAxios();
+  const axiosSecure = UseAxiousSecure();
 
   const fetchRoom = async () => {
-    const response = await axiosPublic.get(`/rooms?order=${value}`);
+    const response = await axiosSecure.get(`/rooms?order=${value}`);
     return response?.data;
   };
 

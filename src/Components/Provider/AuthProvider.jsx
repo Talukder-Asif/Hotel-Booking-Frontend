@@ -36,13 +36,21 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if (currentUser) {
-        axios.post("http://localhost:3000/jwt", loggedUser, {
-          withCredentials: true,
-        });
+        axios.post(
+          "https://hotel-managment-server-ten.vercel.app/jwt",
+          loggedUser,
+          {
+            withCredentials: true,
+          }
+        );
       } else {
-        axios.post("http://localhost:3000/logout", loggedUser, {
-          withCredentials: true,
-        });
+        axios.post(
+          "https://hotel-managment-server-ten.vercel.app/logout",
+          loggedUser,
+          {
+            withCredentials: true,
+          }
+        );
       }
     });
     return () => {

@@ -17,7 +17,10 @@ const ManageStaff = () => {
       Reviews: user?.Reviews,
     };
     axios
-      .put(`http://localhost:3000/user/${user?.email}`, updateData)
+      .put(
+        `https://hotel-managment-server-ten.vercel.app/user/${user?.email}`,
+        updateData
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           refetch();
@@ -42,17 +45,21 @@ const ManageStaff = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/user/${user?._id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              icon: "success",
-              title: `${user.Name} has been deleted from the database`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
+        axios
+          .delete(
+            `https://hotel-managment-server-ten.vercel.app/user/${user?._id}`
+          )
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                icon: "success",
+                title: `${user.Name} has been deleted from the database`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
       }
     });
   };
