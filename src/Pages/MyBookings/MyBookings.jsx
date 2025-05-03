@@ -35,7 +35,7 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="container min-h-[40vh] mx-auto max-w-screen-lg p-4">
+    <div className="container min-h-[15vh] mx-auto max-w-screen-lg p-4">
       <div className="overflow-x-auto">
         {Booking.data.length ? (
           <>

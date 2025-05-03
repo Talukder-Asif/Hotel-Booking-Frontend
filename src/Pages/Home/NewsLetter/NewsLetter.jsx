@@ -8,7 +8,7 @@ const NewsLetter = () => {
       <div className="backdrop-brightness-[0.3] justify-center flex flex-col min-h-[60vh] w-full h-full">
         <h2 className=" lg:text-5xl text-4xl font-semibold text-white text-center pt-10">
           {" "}
-          Subscribe to <span className="text-[#002A3F]">Our</span> NewsLetter
+          Subscribe to <span className="text-[#2196F3]">Our</span> NewsLetter
         </h2>
         <p className="text-white text-center mt-5">
           Get the latest offers fast
@@ -32,7 +32,7 @@ const NewsLetter = () => {
             color={email ? "white" : "white"}
             disabled={!email}
             className={`!absolute text-white ${
-              email ? "bg-[#002A3F]" : "bg-[#286aa3]"
+              email ? "bg-[#2196F3]" : "bg-[#286aa3]"
             } right-1 top-1 rounded`}
           >
             Subscribe

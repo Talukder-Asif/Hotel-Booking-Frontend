@@ -1,5 +1,8 @@
 import { Tab, Tabs } from "../TermsTab/TermsTab";
-
+import createAccount from "/src/assets/createAccount.png";
+import showRooms from "/src/assets/ShowRooms.png";
+import ShowRoomDetail from "/src/assets/ShowRoomDetails.png";
+import MyBooking from "/src/assets/MyBooking.png";
 const ProcessTerms = () => {
   return (
     <Tabs>
@@ -7,7 +10,7 @@ const ProcessTerms = () => {
         component={
           <div className="flex gap-4 p-7 text-white rounded-xl  xl:flex-row justify-around shadow-[#222242] bg-[#222242] shadow-2xl flex-col">
             <div className="lg:w-[50%] w-full">
-              <h2 className="sm:text-4xl text-3xl xl:max-w-[200px] font-bold">
+              <h2 className="sm:text-4xl text-3xl  font-bold">
                 Create An Account
               </h2>
               <p className="mt-3">
@@ -19,7 +22,7 @@ const ProcessTerms = () => {
             </div>
             <img
               className="lg:w-[50%] rounded-lg w-full"
-              src="https://i.ibb.co/sjQ5tDx/Screenshot-866.png"
+              src={createAccount}
               alt="Image 1"
             />
           </div>
@@ -45,11 +48,7 @@ const ProcessTerms = () => {
                 you will get same as the picture in real life in minimul price .
               </p>
             </div>
-            <img
-              className="rounded-2xl"
-              src="https://i.ibb.co/nc47MT3/Screenshot-867.png"
-              alt="Image 1"
-            />
+            <img className="rounded-2xl w-1/2" src={showRooms} alt="Image 1" />
           </div>
         }
       >
@@ -71,15 +70,13 @@ const ProcessTerms = () => {
                 <p className="mt-3">
                   There are multiple seats in a room . So, you can choose the
                   seat that you want to book. And also you can choose the date
-                  that you want.
+                  that you want. And you can see the price of the room and the
+                  seat. If you choice the date then you can book the room by
+                  payment.
                 </p>
               </div>
-              <img
-                src="https://i.ibb.co/CpyDpdF/Screenshot-868.png"
-                alt="Image 1"
-              />
+              <img className="w-1/2" src={ShowRoomDetail} alt="Image 1" />
             </div>
-            <img src="https://i.ibb.co/4F1s5Cf/Screenshot-869.png" alt="" />
           </div>
         }
       >
@@ -104,18 +101,8 @@ const ProcessTerms = () => {
                   here.
                 </p>
               </div>
-              <img
-                className="rounded-xl"
-                src="https://i.ibb.co/djkJ7SK/Screenshot-876.png"
-                alt="Image 1"
-              />
+              <img className="rounded-xl w-1/2" src={MyBooking} alt="Image 1" />
             </div>
-
-            <img
-              className="rounded-xl"
-              src="https://i.ibb.co/m85bsyv/Screenshot-878.png"
-              alt=""
-            />
           </div>
         }
       >

@@ -30,11 +30,25 @@ const Rooms = () => {
 
   return (
     <div>
-      <div className="bg-[url('/roomsbg.jpg')] bg-cover bg-center w-full min-h-[50vh]">
-        <div className="backdrop-brightness-[0.2] flex flex-col justify-center items-center min-h-[50vh] w-full h-full">
-          <img src="/roomsvg.png" alt="" />
+      <div
+        className="relative w-full min-h-[30vh] bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/roomsbg.jpg')" }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-center items-center min-h-[30vh] text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+            Explore Our Rooms
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">
+            Discover comfort, convenience, and elegance with our curated
+            selection of rooms for every kind of traveler.
+          </p>
         </div>
       </div>
+
       <div className="relative w-72 mx-auto mt-5 flex items-center gap-3">
         <span className="flex items-center gap-3">
           <FaFilter></FaFilter> Filter
