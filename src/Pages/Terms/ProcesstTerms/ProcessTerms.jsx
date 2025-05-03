@@ -1,4 +1,3 @@
-import React from "react";
 import { Tab, Tabs } from "../TermsTab/TermsTab";
 
 const ProcessTerms = () => {
@@ -112,7 +111,11 @@ const ProcessTerms = () => {
               />
             </div>
 
-            <img className="rounded-xl" src="https://i.ibb.co/m85bsyv/Screenshot-878.png" alt="" />
+            <img
+              className="rounded-xl"
+              src="https://i.ibb.co/m85bsyv/Screenshot-878.png"
+              alt=""
+            />
           </div>
         }
       >

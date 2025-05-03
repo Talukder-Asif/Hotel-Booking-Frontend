@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 import Swal from "sweetalert2";
@@ -12,20 +13,14 @@ import {
 import moment from "moment";
 
 const BookItem = ({ data, style, num }) => {
-  const { bookedDate, email, _id, seatId, price, roomId } = data;
+  console.log(data);
+  const { reservationTime, _id, totalPrice, roomCode } = data;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
 
-  const [startDate, setStartDate] = useState(new Date(bookedDate));
+  const [startDate, setStartDate] = useState(new Date(reservationTime));
   const AxiousSecure = UseAxiousSecure();
-
-  // useEffect(()=>{
-  //      AxiousSecure.put(`/UpdateBooking/${_id}`, date)
-  //      .then(res => {
-  //         console.log(res.data)
-  //      })
-  // },[date])
 
   const handleUpdate = async () => {
     const res = await AxiousSecure.put(`/UpdateBooking/${_id}`, { startDate });
@@ -39,7 +34,7 @@ const BookItem = ({ data, style, num }) => {
 
   const handleCancel = async () => {
     if (startDate) {
-      const booked = new Date(bookedDate);
+      const booked = new Date(reservationTime);
       console.log(booked);
       const today = new Date();
       const millisecondsInDay = 1000 * 60 * 60 * 24;
@@ -57,10 +52,12 @@ const BookItem = ({ data, style, num }) => {
           console.log("I am here guys");
           if (result.isConfirmed) {
             AxiousSecure.delete(`/deleteBookings/${_id}`).then((data) => {
-              AxiousSecure.put(`/UpdateAvailability/${seatId}`).then((data) => {
-                Swal.fire("Deleted!", "", "success");
-                location.reload();
-              });
+              AxiousSecure.put(`/UpdateAvailability/${roomCode}`).then(
+                (data) => {
+                  Swal.fire("Deleted!", "", "success");
+                  location.reload();
+                }
+              );
             });
             console.log("I have some to delete");
 
@@ -85,8 +82,8 @@ const BookItem = ({ data, style, num }) => {
   return (
     <>
       <tr className={num % 2 ? "bg-gray-100 " : style}>
-        <td className="px-6 py-4 text-center">{seatId}</td>
-        <td className="px-6 py-4 text-center">${price}</td>
+        <td className="px-6 py-4 text-center">{roomCode}</td>
+        <td className="px-6 py-4 text-center">{totalPrice} BDT</td>
         <td className="px-6 py-4 text-center">
           <p>{moment(startDate).format("L")}</p>
         </td>
@@ -116,7 +113,7 @@ const BookItem = ({ data, style, num }) => {
         <DialogBody>
           <p className="flex flex-col text-lg">
             <span>Your Current Booking Date is</span>
-            <span>{moment(bookedDate).format("MMM Do YYYY")}</span>
+            <span>{moment(reservationTime).format("MMM Do YYYY")}</span>
           </p>
 
           <div className=" flex justify-center mx-auto">

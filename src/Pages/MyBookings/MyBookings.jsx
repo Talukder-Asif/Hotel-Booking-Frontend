@@ -21,7 +21,7 @@ const MyBookings = () => {
 
   const AxiousSecure = UseAxiousSecure();
 
-  const uri = `/myBookings?email=${user.email}`;
+  const uri = `/myBookings?email=${user?.email}`;
   const getBooking = async () => {
     const result = await AxiousSecure.get(uri);
     return result;
@@ -30,22 +30,21 @@ const MyBookings = () => {
     queryKey: ["booking", user],
     queryFn: getBooking,
   });
-
   if (isLoading) {
     return <Loading></Loading>;
   }
 
   return (
-    <div className="container mx-auto max-w-screen-lg p-4">
+    <div className="container min-h-[40vh] mx-auto max-w-screen-lg p-4">
       <div className="overflow-x-auto">
         {Booking.data.length ? (
           <>
             <table className="min-w-full table-auto bg-white rounded-lg shadow-lg">
               <thead>
                 <tr className=" text-blue-600">
-                  <th className="px-6 py-3">Seat Id</th>
+                  <th className="px-6 py-3">Room No</th>
                   <th className="px-6 py-3">Price</th>
-                  <th className="px-6 py-3"> Date</th>
+                  <th className="px-6 py-3">Date</th>
                   <th className="px-6 py-3">Update</th>
                   <th className="px-6 py-3"></th>
                 </tr>

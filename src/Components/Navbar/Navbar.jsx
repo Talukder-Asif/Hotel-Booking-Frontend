@@ -67,7 +67,7 @@ const Navbar = () => {
     OUT().then().catch();
   };
   return (
-    <div className=" bg-white ">
+    <div className=" bg-gray-50 border-b">
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -94,7 +94,10 @@ const Navbar = () => {
               {link}
             </ul>
           </div>
-          <img src={logo} className="w-40" alt="" />
+          <a href="/">
+            {" "}
+            <img src={logo} className="w-40" alt="" />
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{link}</ul>
