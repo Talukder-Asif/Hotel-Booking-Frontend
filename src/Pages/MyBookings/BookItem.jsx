@@ -14,7 +14,8 @@ import moment from "moment";
 
 const BookItem = ({ data, style, num }) => {
   console.log(data);
-  const { reservationTime, _id, totalPrice, roomCode } = data;
+  const { reservationTime, checkIn, checkOut, _id, totalPrice, roomCode } =
+    data;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -35,7 +36,6 @@ const BookItem = ({ data, style, num }) => {
   const handleCancel = async () => {
     if (startDate) {
       const booked = new Date(reservationTime);
-      console.log(booked);
       const today = new Date();
       const millisecondsInDay = 1000 * 60 * 60 * 24;
       const differenceInDays = Math.floor((booked - today) / millisecondsInDay);
@@ -85,7 +85,10 @@ const BookItem = ({ data, style, num }) => {
         <td className="px-6 py-4 text-center">{roomCode}</td>
         <td className="px-6 py-4 text-center">{totalPrice} BDT</td>
         <td className="px-6 py-4 text-center">
-          <p>{moment(startDate).format("L")}</p>
+          <p>{new Date(checkIn).toLocaleDateString()}</p>
+        </td>
+        <td className="px-6 py-4 text-center">
+          <p>{new Date(checkOut).toLocaleDateString()}</p>
         </td>
 
         <td className="px-6 py-4 text-center">

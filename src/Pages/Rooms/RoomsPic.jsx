@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const RoomsPic = ({ data }) => {
   const { _id, title, img, roomImages, pricePerNight } = data;
-  const uri = `https://hotel-managment-server-ten.vercel.app/perReviews/${_id}`;
+  const uri = `http://localhost:3000/perReviews/${_id}`;
 
   const getReviews = () => {
     const res = axios.get(uri);

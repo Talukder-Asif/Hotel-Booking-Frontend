@@ -53,7 +53,7 @@ const Login = () => {
           Reviews: [],
         };
         axios
-          .post("https://hotel-managment-server-ten.vercel.app/user", userData)
+          .post("http://localhost:3000/user", userData)
           .then((response) => {
             console.log("User created:", response.data);
           })

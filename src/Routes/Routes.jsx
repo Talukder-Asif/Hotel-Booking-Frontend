@@ -48,9 +48,7 @@ const routes = createBrowserRouter([
           </PrivateProvide>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-managment-server-ten.vercel.app/rooms/${params.id}`
-          ),
+          fetch(`http://localhost:3000/rooms/${params.id}`),
       },
       {
         path: "/myBookings",

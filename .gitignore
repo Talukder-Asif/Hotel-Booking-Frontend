@@ -27,3 +27,4 @@ Firebase.config.js
 *.njsproj
 *.sln
 *.sw?
+.vercel

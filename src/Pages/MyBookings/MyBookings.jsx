@@ -44,7 +44,8 @@ const MyBookings = () => {
                 <tr className=" text-blue-600">
                   <th className="px-6 py-3">Room No</th>
                   <th className="px-6 py-3">Price</th>
-                  <th className="px-6 py-3">Date</th>
+                  <th className="px-6 py-3">Check In</th>
+                  <th className="px-6 py-3">Check Out</th>
                   <th className="px-6 py-3">Update</th>
                   <th className="px-6 py-3"></th>
                 </tr>
