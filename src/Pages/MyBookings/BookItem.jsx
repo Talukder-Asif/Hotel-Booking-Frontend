@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Children, useState } from "react";
+import React, { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 import Swal from "sweetalert2";
@@ -13,7 +13,6 @@ import {
 import moment from "moment";
 
 const BookItem = ({ data, style, type, num }) => {
-  console.log(data);
   const {
     reservationTime,
     checkIn,
@@ -43,48 +42,58 @@ const BookItem = ({ data, style, type, num }) => {
   };
 
   const handleCancel = async () => {
-    if (startDate) {
-      const booked = new Date(reservationTime);
-      const today = new Date();
-      const millisecondsInDay = 1000 * 60 * 60 * 24;
-      const differenceInDays = Math.floor((booked - today) / millisecondsInDay);
-      if (differenceInDays > 1) {
-        console.log("you  can");
-        Swal.fire({
-          title: "Do you want to really want to delete?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Save",
-          denyButtonText: `Don't save`,
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          console.log("I am here guys");
-          if (result.isConfirmed) {
-            AxiousSecure.delete(`/deleteBookings/${_id}`).then((data) => {
-              AxiousSecure.put(`/UpdateAvailability/${roomCode}`).then(
-                (data) => {
-                  Swal.fire("Deleted!", "", "success");
-                  location.reload();
-                }
-              );
-            });
-            console.log("I have some to delete");
+    if (!startDate) return;
 
-            console.log("I have some to delete");
-          } else if (result.isDenied) {
-            Swal.fire("Coludn't complete", "", "info");
-          }
-        });
-      } else {
-        Swal.fire({
-          title: "Not enought time !",
-          text: "You can't cancel the booking now!",
-          icon: "info",
-        });
+    const booked = new Date(checkIn);
+    const today = new Date();
+
+    // Remove time part to ensure accurate day comparison
+    booked.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    const differenceInDays = Math.floor(
+      (booked - today) / (1000 * 60 * 60 * 24)
+    );
+
+    if (differenceInDays > 1) {
+      const result = await Swal.fire({
+        title: "Do you really want to cancel?",
+        text: "We will refund your money within 3-5 working days, with a 10% deduction as tax.",
+        icon: "warning",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Yes, cancel it!",
+        denyButtonText: "No",
+      });
+
+      if (result.isConfirmed) {
+        try {
+          await AxiousSecure.delete(`/deleteBookings/${_id}`);
+          await AxiousSecure.put(`/UpdateAvailability/${roomCode}`);
+
+          await Swal.fire(
+            "Cancelled!",
+            "Your booking has been cancelled.",
+            "success"
+          );
+          location.reload();
+        } catch (error) {
+          console.error("Cancellation error:", error);
+          Swal.fire(
+            "Error!",
+            "Something went wrong while cancelling the booking.",
+            "error"
+          );
+        }
+      } else if (result.isDenied) {
+        Swal.fire("Cancelled", "Your booking is still active.", "info");
       }
-
-      console.log("gg", differenceInDays);
-      return;
+    } else {
+      Swal.fire({
+        title: "Too late to cancel!",
+        text: "You can't cancel the booking less than 2 days before check-in.",
+        icon: "info",
+      });
     }
   };
 

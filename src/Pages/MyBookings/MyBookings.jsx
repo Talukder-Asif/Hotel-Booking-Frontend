@@ -108,10 +108,10 @@ const MyBookings = () => {
           </>
         )}
       </div>
-      <div className="overflow-x-auto pt-5 mt-10">
+      <div className="overflow-x-auto">
         {previousReservation?.length ? (
-          <>
-            <h3 className="text-center text-4xl">Previous Bookings</h3>
+          <div className=" p-5 mt-10 bg-gray-200">
+            <h3 className="text-center mb-2 text-4xl">Previous Bookings</h3>
 
             <table className="min-w-full table-auto bg-white rounded-lg shadow-lg">
               <thead>
@@ -135,7 +135,7 @@ const MyBookings = () => {
                 ))}
               </tbody>
             </table>
-          </>
+          </div>
         ) : null}
       </div>
     </div>
