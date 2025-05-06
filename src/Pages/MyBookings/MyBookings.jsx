@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import UseAxiousSecure from "./../../Hooks/UseAxiousSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Components/Provider/AuthProvider";
@@ -30,19 +30,41 @@ const MyBookings = () => {
     queryKey: ["booking", user],
     queryFn: getBooking,
   });
+  const [activeReservation, setActiveReservation] = useState([]);
+  const [previousReservation, setPreviousReservation] = useState([]);
+
+  useEffect(() => {
+    if (!Booking?.data) return;
+
+    const now = new Date();
+
+    const active = Booking.data.filter(
+      (item) => new Date(item.checkOut) >= now
+    );
+
+    const previous = Booking.data.filter(
+      (item) => new Date(item.checkOut) < now
+    );
+
+    setActiveReservation(active);
+    setPreviousReservation(previous);
+  }, [Booking?.data]);
+
   if (isLoading) {
     return <Loading></Loading>;
   }
 
   return (
     <div className="container min-h-[15vh] mx-auto max-w-screen-lg p-4">
-      <div className="overflow-x-auto">
-        {Booking.data.length ? (
+      <div className="overflow-x-auto pt-5 mt-10">
+        <h3 className="text-center text-4xl">Active Bookings</h3>
+
+        {activeReservation?.length ? (
           <>
             <table className="min-w-full table-auto bg-white rounded-lg shadow-lg">
               <thead>
                 <tr className=" text-blue-600">
-                  <th className="px-6 py-3">Room No</th>
+                  <th className="px-6 py-3">Room</th>
                   <th className="px-6 py-3">Price</th>
                   <th className="px-6 py-3">Check In</th>
                   <th className="px-6 py-3">Check Out</th>
@@ -51,8 +73,9 @@ const MyBookings = () => {
                 </tr>
               </thead>
               <tbody>
-                {Booking.data?.map((value, i) => (
+                {activeReservation?.map((value, i) => (
                   <BookItem
+                    type="active"
                     num={i}
                     style={"bg-blue-100"}
                     key={value._id}
@@ -84,6 +107,36 @@ const MyBookings = () => {
             </div>
           </>
         )}
+      </div>
+      <div className="overflow-x-auto pt-5 mt-10">
+        {previousReservation?.length ? (
+          <>
+            <h3 className="text-center text-4xl">Previous Bookings</h3>
+
+            <table className="min-w-full table-auto bg-white rounded-lg shadow-lg">
+              <thead>
+                <tr className=" text-blue-600">
+                  <th className="px-6 py-3">Room</th>
+                  <th className="px-6 py-3">Price</th>
+                  <th className="px-6 py-3">Check In</th>
+                  <th className="px-6 py-3">Check In</th>
+                  <th className="px-6 py-3">Guest</th>
+                </tr>
+              </thead>
+              <tbody>
+                {previousReservation?.map((value, i) => (
+                  <BookItem
+                    num={i}
+                    type="previous"
+                    style={"bg-blue-100"}
+                    key={value._id}
+                    data={value}
+                  ></BookItem>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : null}
       </div>
     </div>
   );

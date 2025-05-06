@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 import Swal from "sweetalert2";
@@ -12,10 +12,19 @@ import {
 } from "@material-tailwind/react";
 import moment from "moment";
 
-const BookItem = ({ data, style, num }) => {
+const BookItem = ({ data, style, type, num }) => {
   console.log(data);
-  const { reservationTime, checkIn, checkOut, _id, totalPrice, roomCode } =
-    data;
+  const {
+    reservationTime,
+    checkIn,
+    checkOut,
+    title,
+    _id,
+    totalPrice,
+    roomCode,
+    adultPeople,
+    children,
+  } = data;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -82,33 +91,42 @@ const BookItem = ({ data, style, num }) => {
   return (
     <>
       <tr className={num % 2 ? "bg-gray-100 " : style}>
-        <td className="px-6 py-4 text-center">{roomCode}</td>
+        <td className="px-6 py-4 text-left">
+          {roomCode}
+          <p>{title}</p>
+        </td>
         <td className="px-6 py-4 text-center">{totalPrice} BDT</td>
         <td className="px-6 py-4 text-center">
-          <p>{new Date(checkIn).toLocaleDateString()}</p>
+          <p>{new Date(checkIn).toLocaleDateString("en-GB")}</p>
         </td>
         <td className="px-6 py-4 text-center">
-          <p>{new Date(checkOut).toLocaleDateString()}</p>
+          <p>{new Date(checkOut).toLocaleDateString("en-GB")}</p>
         </td>
-
-        <td className="px-6 py-4 text-center">
-          <button
-            onClick={handleOpen}
-            className="bg-blue-800 text-white px-4 py-2 rounded-full hover:bg-blue-900 focus:outline-none"
-          >
-            Update
-          </button>
-        </td>
-        <td className="px-6 py-4 text-center">
-          <button
-            onClick={() => {
-              handleCancel();
-            }}
-            className="bg-red-400 text-white px-4 py-2 rounded-full hover:bg-red-500 focus:outline-none"
-          >
-            Cancel
-          </button>
-        </td>
+        {type === "active" ? (
+          <>
+            {" "}
+            <td className="px-6 py-4 text-center">
+              <button
+                onClick={handleOpen}
+                className="bg-blue-800 text-white px-4 py-2 rounded-full hover:bg-blue-900 focus:outline-none"
+              >
+                Update
+              </button>
+            </td>
+            <td className="px-6 py-4 text-center">
+              <button
+                onClick={() => {
+                  handleCancel();
+                }}
+                className="bg-red-400 text-white px-4 py-2 rounded-full hover:bg-red-500 focus:outline-none"
+              >
+                Cancel
+              </button>
+            </td>
+          </>
+        ) : (
+          <td className="px-6 py-4 text-center"> {adultPeople + children}</td>
+        )}
       </tr>
 
       <Dialog open={open} handler={handleOpen}>
