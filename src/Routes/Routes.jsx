@@ -19,6 +19,7 @@ import RoomsForAdmin from "../Pages/Admin/Rooms/RoomsForAdmin";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 import Status from "../Pages/Admin/Status/Status";
 import BookingHistory from "../Pages/Admin/BookingHistory/BookingHistory";
+import CanceledBooking from "../Pages/Admin/CanceledBooking/CanceledBooking";
 
 const routes = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/history",
             element: <BookingHistory></BookingHistory>,
+          },
+          {
+            path: "/dashboard/cancel",
+            element: <CanceledBooking></CanceledBooking>,
           },
           {
             path: "/dashboard/guests",
