@@ -18,6 +18,7 @@ import AddRoom from "../Pages/Admin/AddRoom/AddRoom";
 import RoomsForAdmin from "../Pages/Admin/Rooms/RoomsForAdmin";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
 import Status from "../Pages/Admin/Status/Status";
+import BookingHistory from "../Pages/Admin/BookingHistory/BookingHistory";
 
 const routes = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/officials",
             element: <ManageStaff></ManageStaff>,
+          },
+          {
+            path: "/dashboard/history",
+            element: <BookingHistory></BookingHistory>,
           },
           {
             path: "/dashboard/guests",
