@@ -53,13 +53,22 @@ const Gallery = () => {
               className="relative group break-inside-avoid overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <a
-                href={image.url}
+                href="#"
                 className="glightbox"
-                data-gallery="gallery1"
-                data-title={image.title || "Hotel Room"}
-                data-description={
-                  image.description || "Beautiful accommodation at Smart Hotel"
-                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  const lb = GLightbox({
+                    elements: images.map((img) => ({
+                      href: img.url,
+                      type: "image",
+                      title: img.title,
+                      description: img.description,
+                    })),
+                    autoplayVideos: false,
+                    startAt: index,
+                  });
+                  lb.open();
+                }}
               >
                 <img
                   src={image.url}
