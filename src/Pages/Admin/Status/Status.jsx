@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios"; // Assuming you're using axios for API calls
 import UseAxiousSecure from "../../../Hooks/UseAxiousSecure";
 import Loading from "../../../Components/Loading/Loading";
 import { FaUserAlt } from "react-icons/fa";
@@ -36,7 +35,9 @@ const Status = () => {
   // Handle check-in status change
   const handleCheckInChange = async (id) => {
     try {
-      await axios.patch(`/api/reservations/${id}`, { isCheckIn: true });
+      await axiosSecure.patch(`/isCheck/reservations/${id}`, {
+        isCheckIn: true,
+      });
       fetchData(); // Refresh data after update
     } catch (error) {
       console.error("Error updating check-in status:", error);
@@ -46,7 +47,9 @@ const Status = () => {
   // Handle check-out status change
   const handleCheckOutChange = async (id) => {
     try {
-      await axios.patch(`/api/reservations/${id}`, { isCheckOut: true });
+      await axiosSecure.patch(`/checkout/reservations/${id}`, {
+        isCheckOut: true,
+      });
       fetchData(); // Refresh data after update
     } catch (error) {
       console.error("Error updating check-out status:", error);
@@ -56,7 +59,9 @@ const Status = () => {
   // Handle refund status change
   const handleRefundChange = async (id, currentStatus) => {
     try {
-      await axios.patch(`/api/cancellations/${id}`, { refund: !currentStatus });
+      await axiosSecure.patch(`/api/cancellations/${id}`, {
+        refund: !currentStatus,
+      });
       fetchData(); // Refresh data after update
     } catch (error) {
       console.error("Error updating refund status:", error);
@@ -112,6 +117,7 @@ const Status = () => {
                       Room {reservation.roomCode}
                     </div>
                   </td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {reservation.totalNights} nights
@@ -133,11 +139,11 @@ const Status = () => {
                     </div>
                   </td>
 
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 text-center whitespace-nowrap">
                     <input
                       type="checkbox"
                       checked={reservation.isCheckIn}
-                      onChange={() => handleCheckInChange(reservation._id.$oid)}
+                      onChange={() => handleCheckInChange(reservation._id)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                     />
                   </td>
@@ -175,7 +181,10 @@ const Status = () => {
               {todaysCheckouts.map((reservation, i) => (
                 <tr key={i}>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">
+                    <div className="text-sm text-gray-900">
+                      {reservation.guestName}
+                    </div>
+                    <div className="text-sm text-gray-500">
                       {reservation.userEmail}
                     </div>
                   </td>
@@ -184,7 +193,7 @@ const Status = () => {
                       {reservation.title}
                     </div>
                     <div className="text-sm text-gray-500">
-                      {reservation.roomCode}
+                      Room {reservation.roomCode}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -199,9 +208,7 @@ const Status = () => {
                     <input
                       type="checkbox"
                       checked={reservation.isCheckOut}
-                      onChange={() =>
-                        handleCheckOutChange(reservation._id.$oid)
-                      }
+                      onChange={() => handleCheckOutChange(reservation._id)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                     />
                   </td>
@@ -237,25 +244,30 @@ const Status = () => {
               {todaysCancels.map((cancel, i) => (
                 <tr key={i}>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">
+                    <div className="text-sm text-gray-900">
+                      {cancel.guestName}
+                    </div>
+                    <div className="text-sm text-gray-500">
                       {cancel.userEmail}
                     </div>
                   </td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{cancel.title}</div>
                     <div className="text-sm text-gray-500">
-                      {cancel.roomCode}
+                      Room {cancel.roomCode}
                     </div>
                   </td>
+
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {new Date(cancel.cancelledAt.$date).toLocaleString()}
+                    {new Date(cancel.cancelledAt).toLocaleString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <input
                       type="checkbox"
                       checked={cancel.refund}
                       onChange={() =>
-                        handleRefundChange(cancel._id.$oid, cancel.refund)
+                        handleRefundChange(cancel._id, cancel.refund)
                       }
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                     />

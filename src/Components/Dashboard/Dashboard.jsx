@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import UseUser from "../../Hooks/UseUser";
-import { FaUserAlt, FaUserCheck } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 import { MdGroups, MdBedroomParent } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import { BsFillInfoCircleFill } from "react-icons/bs";
@@ -62,22 +62,6 @@ const Dashboard = () => {
                   >
                     <FaUserAlt className="text-[#2ec4b6] text-base md:text-xl group-hover:text-white" />
                     <span className="ms-3">Guests</span>
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink
-                    to={"/dashboard/review"}
-                    className={({ isActive }) =>
-                      `flex items-center py-0.5 px-1 md:py-3 md:px-6 text-xs md:text-sm font-medium uppercase tracking-widest duration-300 border-2 group border-[#002a3f] ${
-                        isActive
-                          ? "!bg-[#002a3f] !text-white hover:!bg-[#2ec4b6] hover:!text-[#002a3f] hover:!border-[#2ec4b6]"
-                          : "hover:bg-[#002a3f] hover:text-white hover:border-[#2ec4b6]"
-                      }`
-                    }
-                  >
-                    <FaUserCheck className="text-[#2ec4b6] text-base md:text-xl group-hover:text-white" />
-                    <span className="ms-3">Manage Reviews</span>
                   </NavLink>
                 </li>
 
