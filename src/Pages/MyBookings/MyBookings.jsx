@@ -56,9 +56,8 @@ const MyBookings = () => {
 
   return (
     <div className="container min-h-[15vh] mx-auto max-w-screen-lg p-4">
-      <div className="overflow-x-auto pt-5 mt-10">
+      <div className="overflow-x-auto pt-5 my-5">
         <h3 className="text-center text-4xl">Active Bookings</h3>
-
         {activeReservation?.length ? (
           <>
             <table className="min-w-full table-auto bg-white rounded-lg shadow-lg">

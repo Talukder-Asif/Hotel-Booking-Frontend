@@ -55,6 +55,7 @@ const PaymentPage = () => {
       status: "confirmed",
       reservationTime: formatDateTime(), // "2025-05-03 16:45:12"
       userEmail: userData?.email,
+      guestName: userData?.Name,
     };
     const newRoomData = {
       ...roomData,

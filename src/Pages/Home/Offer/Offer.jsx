@@ -13,7 +13,7 @@ const Offer = () => {
           Book Online Hotels to <span className="text-[#002A3F]">Get 20% </span>
           OFF
         </h1>
-        <button className="btn bg-[#002A3F] w-[130px]    mx-auto  hover:bg-[#0c5492] text-white mt-4">
+        <button className="btn bg-[#002A3F] w-[130px] mx-auto hover:bg-[#0c5492] text-white mt-4">
           Book Now
         </button>
       </div>

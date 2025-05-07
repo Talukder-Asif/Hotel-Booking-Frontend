@@ -17,6 +17,7 @@ import ManageGuest from "../Pages/Admin/ManageGuest/ManageGuest";
 import AddRoom from "../Pages/Admin/AddRoom/AddRoom";
 import RoomsForAdmin from "../Pages/Admin/Rooms/RoomsForAdmin";
 import PaymentPage from "../Pages/PaymentPage/PaymentPage";
+import Status from "../Pages/Admin/Status/Status";
 
 const routes = createBrowserRouter([
   {
@@ -48,7 +49,9 @@ const routes = createBrowserRouter([
           </PrivateProvide>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/rooms/${params.id}`),
+          fetch(
+            `https://hotel-managment-server-ten.vercel.app/rooms/${params.id}`
+          ),
       },
       {
         path: "/myBookings",
@@ -109,6 +112,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/rooms",
             element: <RoomsForAdmin></RoomsForAdmin>,
+          },
+          {
+            path: "/dashboard/status",
+            element: <Status></Status>,
           },
         ],
       },

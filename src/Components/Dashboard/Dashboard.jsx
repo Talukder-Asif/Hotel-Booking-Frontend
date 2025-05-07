@@ -1,9 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
 import UseUser from "../../Hooks/UseUser";
 import { FaUserAlt, FaUserCheck } from "react-icons/fa";
-import { GrStatusInfo } from "react-icons/gr";
 import { MdGroups, MdBedroomParent } from "react-icons/md";
 import Loading from "../Loading/Loading";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 const Dashboard = () => {
   const { userData, isLoading } = UseUser();
@@ -28,7 +28,7 @@ const Dashboard = () => {
                   }`
                 }
               >
-                <GrStatusInfo className="text-[#2ec4b6] text-base md:text-xl group-hover:text-white" />
+                <BsFillInfoCircleFill className="text-[#2ec4b6] text-base md:text-xl group-hover:text-white" />
                 <span className="ms-3">Status</span>
               </NavLink>
             </li>

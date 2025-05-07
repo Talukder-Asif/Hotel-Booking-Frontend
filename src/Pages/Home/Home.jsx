@@ -44,12 +44,12 @@ const Home = () => {
           <div className="min-h-screen w-full gap-10 p-4 backdrop-brightness-[0.3] flex lg:flex-row-reverse flex-col justify-center bg-cover bg-center bg-fixed  items-center">
             <div className="mt-16 ">
               <h2 className="text-white lg:text-5xl max-w-lg leading-10 lg:text-start text-center text-3xl drop-shadow-xl font-bold  shadow-blue-500">
-                {" Your Ultimate Hotel Management Solution"}
+                Your Ultimate Hotel Management Solution
               </h2>
               <p className=" text-white max-w-xl mt-4 lg:text-start text-center">
-                {`Optimize your hotel operations with our all-in-one hotel management
-          platform. Efficiency, guest satisfaction, and success, all in one
-          place`}
+                Optimize your hotel operations with our all-in-one hotel
+                management platform. Efficiency, guest satisfaction, and
+                success, all in one place
               </p>
             </div>
 
