@@ -1,110 +1,102 @@
 [
   {
     "id": 1,
-    "url": "https://i.ibb.co/MC9NMg4/sasha-kaunas-7-ZD-JIwl410-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746213836/va0xwqex0vdb2uvng1qt.jpg",
     "width": "25%",
-    "height": "30%"
+    "height": "30%",
+    "title": "Luxury Presidential Suite",
+    "description": "Our most exclusive suite with panoramic city views",
+    "category": "suites",
+    "price": "$499/night",
+    "amenities": ["King bed", "Jacuzzi", "Private balcony"]
   },
   {
     "id": 2,
-    "url": "https://i.ibb.co/Wyz0sJ0/sasha-kaunas-kg06gup-FNZc-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746213837/q5kbu6onnpqn9e6pjxy1.jpg",
     "width": "15%",
-    "height": "25%"
+    "height": "25%",
+    "title": "Executive Business Room",
+    "description": "Productivity-focused accommodation for business travelers",
+    "category": "business",
+    "price": "$299/night",
+    "amenities": ["Work desk", "High-speed WiFi", "Coffee station"]
   },
   {
     "id": 3,
-    "url": "https://i.ibb.co/YbtK1Cb/erick-palacio-B9-J6ab-AHPA-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746213838/kcn9zuvh5jgcxirbkhug.jpg",
     "width": "20%",
-    "height": "20%"
+    "height": "20%",
+    "title": "Deluxe Ocean View",
+    "description": "Wake up to breathtaking ocean sunrises",
+    "category": "premium",
+    "price": "$349/night",
+    "amenities": ["Queen bed", "Ocean view", "Mini-bar"]
   },
   {
     "id": 4,
-    "url": "https://i.ibb.co/rmrRdnn/kenny-eliason-i-Aftd-Icgp-Fc-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746219757/zl1x6e4cywqrxadmnmxu.jpg",
     "width": "22%",
-    "height": "28%"
+    "height": "28%",
+    "title": "Family Penthouse",
+    "description": "Spacious accommodation for families",
+    "category": "family",
+    "price": "$399/night",
+    "amenities": ["Two bedrooms", "Kitchenette", "Game console"]
   },
   {
     "id": 5,
-    "url": "https://i.ibb.co/gzy0Q1V/huy-nguyen-f-Qg-YAn-WVFeo-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746219756/n97p0xppuk88hqicqnwe.jpg",
     "width": "21%",
-    "height": "32%"
+    "height": "32%",
+    "title": "Honeymoon Suite",
+    "description": "Romantic getaway with special amenities",
+    "category": "suites",
+    "price": "$459/night",
+    "amenities": ["Champagne on arrival", "Couples massage", "Private terrace"]
   },
   {
     "id": 6,
-    "url": "https://i.ibb.co/sR16vS7/li-yang-a8i-CZvtr-Hp-Q-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746219759/qu5bngxnvwqkrvna6jdd.jpg",
     "width": "18%",
-    "height": "25%"
+    "height": "25%",
+    "title": "Standard Room",
+    "description": "Comfortable accommodation at great value",
+    "category": "standard",
+    "price": "$199/night",
+    "amenities": ["Queen bed", "Smart TV", "Work desk"]
   },
   {
     "id": 7,
-    "url": "https://i.ibb.co/FBLMDtT/point3d-commercial-imaging-ltd-oxe-CZrodz78-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746245672/l7iz2uazjpnemjhuk95l.jpg",
     "width": "24%",
-    "height": "23%"
+    "height": "23%",
+    "title": "Executive Lounge Access",
+    "description": "Exclusive lounge with premium services",
+    "category": "business",
+    "price": "+$99/night",
+    "amenities": ["Private check-in", "Complimentary drinks", "Business center"]
   },
   {
     "id": 8,
-    "url": "https://i.ibb.co/KLy98XY/dave-photoz-6-MYm-c-UJRB0-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746245671/pkuodelsifsr2mnolcvf.jpg",
     "width": "19%",
-    "height": "29%"
+    "height": "29%",
+    "title": "Garden View Room",
+    "description": "Tranquil views of our botanical gardens",
+    "category": "premium",
+    "price": "$279/night",
+    "amenities": ["Queen bed", "Garden access", "Yoga mat"]
   },
   {
     "id": 9,
-    "url": "https://i.ibb.co/TYbcC0t/sidekix-media-g8tb9-SXq-ZVQ-unsplash.jpg",
+    "url": "https://res.cloudinary.com/duxyduzb3/image/upload/v1746245673/z1v6asi5ykhv5e13paqy.jpg",
     "width": "17%",
-    "height": "27%"
-  },
-  {
-    "id": 10,
-    "url": "https://i.ibb.co/hC7P7G5/roberto-nickson-emqn-SQw-QQDo-unsplash.jpg",
-    "width": "23%",
-    "height": "21%"
-  },
-  {
-    "id": 11,
-    "url": "https://i.ibb.co/8ssbBrc/isaac-quesada-xc4oxg-Ab-Dmw-unsplash.jpg",
-    "width": "26%",
-    "height": "35%"
-  },
-  {
-    "id": 12,
-    "url": "https://i.ibb.co/mNHX1sM/sidekix-media-Eo-TUCbv9-Jrs-unsplash.jpg",
-    "width": "16%",
-    "height": "22%"
-  },
-  {
-    "id": 13,
-    "url": "https://i.ibb.co/7YfzjFw/point3d-commercial-imaging-ltd-k-CSlhh-C-Ch8-unsplash.jpg",
-    "width": "28%",
-    "height": "33%"
-  },
-  {
-    "id": 14,
-    "url": "https://i.ibb.co/SdJKjdj/albert-vincent-wu-fupf3-x-AUqw-unsplash.jpg",
-    "width": "29%",
-    "height": "26%"
-  },
-  {
-    "id": 15,
-    "url": "https://i.ibb.co/4P2gKhz/frames-for-your-heart-Fqqi-Av-Jejto-unsplash.jpg",
-    "width": "27%",
-    "height": "19%"
-  },
-  {
-    "id": 16,
-    "url": "https://i.ibb.co/23RVyv5/point3d-commercial-imaging-ltd-DLz-YCk-Mkj-BQ-unsplash.jpg",
-    "width": "32%",
-    "height": "24%"
-  },
-  {
-    "id": 17,
-    "url": "https://i.ibb.co/KzvP0c6/marvin-meyer-f-Bdlytm6-Hp8-unsplash.jpg",
-    "width": "20%",
-    "height": "28%"
-  },
-  {
-    "id": 18,
-    "url": "https://i.ibb.co/jyhbFTL/shai-pal-56-WKMCORs-0-unsplash.jpg",
-    "width": "24%",
-    "height": "30%"
+    "height": "27%",
+    "title": "Cityscape Room",
+    "description": "Vibrant urban views in the heart of downtown",
+    "category": "standard",
+    "price": "$229/night",
+    "amenities": ["Double bed", "City view", "Blackout curtains"]
   }
+
 ]
