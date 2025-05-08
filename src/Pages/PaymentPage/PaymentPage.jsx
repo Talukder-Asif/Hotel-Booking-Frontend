@@ -4,6 +4,8 @@ import Loading from "../../Components/Loading/Loading";
 import UseAxiousSecure from "../../Hooks/UseAxiousSecure";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import emailjs from "emailjs-com";
+emailjs.init("n6jQjj4qomMi52ltk");
 
 const PaymentPage = () => {
   const { userData, isLoading } = UseUser();
@@ -53,7 +55,7 @@ const PaymentPage = () => {
       userId: userData?._id,
       payment: "paid",
       status: "confirmed",
-      reservationTime: formatDateTime(), // "2025-05-03 16:45:12"
+      reservationTime: formatDateTime(),
       userEmail: userData?.email,
       guestName: userData?.Name,
     };
@@ -71,16 +73,36 @@ const PaymentPage = () => {
       userData,
     };
 
+    const params = {
+      to_name: userData?.Name,
+      to_email: userData?.email, // This is crucial - the recipient's email
+      from_name: "Hotel Management",
+      message: `Your reservation for ${reservationData?.title} has been confirmed.
+      Check-In: ${reservationData?.checkIn}
+      Check-Out: ${reservationData?.checkOut}
+      Total Price: ${reservationData?.totalPrice} BDT
+      Thank you for choosing us!`,
+      reply_to: userData?.email, // This sets where replies will go
+    };
+
     axiosSecure.post("/reservation", totalData).then((res) => {
       if (res.data.insertedId) {
-        Swal.fire({
-          title: "Payment Successful",
-          text: "Your payment has been successfully processed.",
-          icon: "success",
-          confirmButtonText: "OK",
-        }).then(() => {
-          window.location.href = "/myBookings";
-        });
+        emailjs.send("service_asxbhyi", "template_v1nzly6", params).then(
+          (response) => {
+            Swal.fire({
+              title: "Payment Successful",
+              text: "Your payment has been successfully processed.",
+              icon: "success",
+              confirmButtonText: "OK",
+            }).then(() => {
+              window.location.href = "/myBookings";
+            });
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
       } else {
         alert("Payment failed. Please try again.");
       }

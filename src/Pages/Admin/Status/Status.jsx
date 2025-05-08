@@ -204,7 +204,7 @@ const Status = () => {
                       {reservation.checkIn} to {reservation.checkOut}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 text-center whitespace-nowrap">
                     <input
                       type="checkbox"
                       checked={reservation.isCheckOut}
@@ -235,6 +235,10 @@ const Status = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Cancel Date
                 </th>
+                <th className="px-6 py-3 text-xs text-center font-medium text-gray-500 uppercase tracking-wider">
+                  Amount <br />
+                  <span className="text-[9px]">After 10% Tax</span>
+                </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Refund
                 </th>
@@ -261,6 +265,9 @@ const Status = () => {
 
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {new Date(cancel.cancelledAt).toLocaleString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {cancel.totalPrice * 0.9} BDT
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <input
